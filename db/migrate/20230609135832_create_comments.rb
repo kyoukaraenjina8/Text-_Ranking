@@ -1,11 +1,10 @@
-class CreatePosts < ActiveRecord::Migration[6.1]
+class CreateComments < ActiveRecord::Migration[6.1]
   def change
-    create_table :posts do |t|
+    create_table :comments do |t|
       t.integer :user_id, null: false
-      t.string :text_name, null: false
-      t.text :introduction, null: false
-      t.text :review, null: false
-      t.integer :price, null: false
+      t.integer :book_id, null: false
+      t.string :comment_user, null: false
+      t.text :comment_introduction, null: false
       t.float :total_score, null: false
       t.float :read_score, null: false
       t.float :price_score, null: false
