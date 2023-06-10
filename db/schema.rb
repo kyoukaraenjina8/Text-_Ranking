@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(version: 2023_06_09_150852) do
     t.integer "book_id", null: false
     t.string "comment_user", null: false
     t.text "comment_introduction", null: false
-    t.float "total_score", null: false
-    t.float "read_score", null: false
-    t.float "price_score", null: false
-    t.float "usability_score", null: false
+    t.float "total_score", default: 0.0, null: false
+    t.float "read_score", default: 0.0, null: false
+    t.float "price_score", default: 0.0, null: false
+    t.float "usability_score", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -71,10 +71,10 @@ ActiveRecord::Schema.define(version: 2023_06_09_150852) do
     t.text "introduction", null: false
     t.text "review", null: false
     t.integer "price", null: false
-    t.float "total_score", null: false
-    t.float "read_score", null: false
-    t.float "price_score", null: false
-    t.float "usability_score", null: false
+    t.float "total_score", default: 0.0, null: false
+    t.float "read_score", default: 0.0, null: false
+    t.float "price_score", default: 0.0, null: false
+    t.float "usability_score", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
