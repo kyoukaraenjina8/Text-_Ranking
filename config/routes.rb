@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  
+
 root to: "homes#top"
 
 get "/homes/about" => "homes#about", as: "about"
 
-  resources :posts, only: [:new,:show,:create]
-  
+scope module: :public do
+resource :posts, only: [:new,:create]
+resources :posts, only: [:show]
+
+end
+
 # namespace :admin do
 #   resources :posts, only: [:new,:destroy,:create]
 # end
