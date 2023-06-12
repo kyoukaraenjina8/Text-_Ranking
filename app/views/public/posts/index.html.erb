@@ -1,39 +1,98 @@
 <h1>index</h1>
-<%= @posts.each do |post| %>
+<table class='table'>
+ 
+  <tbody>
+    <% @posts.each do |post| %>
+    <tr>
+      <td><%= link_to post_path(post.id) do %>
+        <%= image_tag post.get_image(200, 200) %>
+      <% end %>
+      </td>
+      <th><%= '投稿者名' %></th>
+      <td><%= post.user.name %></td>
+      <th><%= '商品名' %></th>
+      <td><%= post.text_name %></td>
+      <th><%= '商品説明' %></th>
+      <td><%= post.introduction %></td>
+      <th><%= 'レビュー' %></th>
+      <td><%= post.review %></td>
+      <th><%= '価格' %></th>
+      <td><%= post.price %></td>
+    </tr>
+    
 
-<div>
-  <%= link_to post_path(post.id) do %>
-  <%= image_tag post.get_image  %>
-  <% end %>
-  <p>投稿者名：<%= post.user.name %></p>
-  <p>レビュー：<%= post.review %></p>
-  <p>商品名：<%= post.text_name %></p>
-  <p>商品説明：<%= post.introduction %></p>
-  <p>レビュー：<%= post.review %></p>
-  <p>価格：<%= post.price %></p>
-
-<div id='post_rate'></div>
+    <tr>
+      <th><%= '総合評価' %></th>
+      <td><div class="post_raty" data-score="<%= post.total_score %>"></div></td>
             <script>
-new Raty(document.querySelector('#post_rate'), {
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'post[total_score]',
-      half: false
-    });
-          </script>
-          
-  <p>読みやすさ：<%#= post.read_score %></p>
-  <p>価格の妥当性：<%#= post.price_score %></p>
-  <p>実用度：<%#= post.usability_score %></p>
+              // scriptファイルをどのidの部分に配置するかを指定
+              let elem = document.querySelector('.post_raty');
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                readOnly: true,
+                //星画像の指定などのオプションをここに記述,
+              };
+              raty(elem, opt);
+            </script>
+            
+      <th><%= '読みやすさ' %></th>
+            <td><div id="read_score_raty" data-score="<%= post.read_score %>"></div></td>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        let read_score_raty_elem = document.querySelector('#read_score_raty');
+        let read_score_raty_opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[read_score]',
+          readOnly: true,
+          //星画像の指定などのオプションをここに記述,
+         };
+        raty(read_score_raty_elem, read_score_raty_opt);
+      </script>
+      
+      <th><%= '読みやすさ' %></th>
+                  <td><div id="price_score_raty" data-score="<%= post.price_score %>"></div></td>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        let price_score_raty_elem = document.querySelector('#price_score_raty');
+        let price_score_raty_opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[price_score]',
+          readOnly: true,
+          //星画像の指定などのオプションをここに記述,
+         };
+        raty(price_score_raty_elem, price_score_raty_opt);
+      </script>
+            <th><%= '実用度' %></th>
+            <td><div id="usability_score_raty" data-score="<%= post.usability_score %>"></div></td>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        let usability_score_raty_elem = document.querySelector('#usability_score_raty');
+        let usability_score_raty_opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[usability_score]',
+                    readOnly: true,
+          //星画像の指定などのオプションをここに記述,
+         };
+        raty(usability_score_raty_elem, usability_score_raty_opt);
+      </script>
+    </tr>
+  </tbody>
+</table>
 
-<%= @comments.each do |comment| %>
+      <%= @comments.each do |comment| %>
+  <div>
+    <p>投稿者名：<%= comment.user.name %></p>
+    <p>コメント：<%= comment.comment_introduction %></p>
+    <p><%#= link_to "削除", post_comment_path, method: :delete %></p>
+  </div>
+  <% end %>
 
-<div>
-  <p>投稿者名：<%= comment.user.name %></p>
-  <p>コメント：<%= comment.comment_introduction %></p>
-</div>
-<% end %>
-<%= link_to "削除", url:post_comment_path method: :delete %>
 <% end %>

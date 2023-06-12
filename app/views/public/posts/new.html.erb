@@ -1,85 +1,123 @@
-<h1>テキストのレビューを投稿する</h1>
-
-<%= form_with model: @post do |f| %>
-
-<%= "商品画像" %>
-<%= f.file_field :image, accept: "image/*" %>
-
-<%= '商品名' %>
-<%= f.text_field :text_name %>
-
-<%= '商品説明' %>
-<%= f.text_area :introduction %>
-
-<%= 'レビュー' %>
-<%= f.text_area :review %>
-
-<%= '価格' %>
-<%= f.text_field :price %>
-
-<%= '総合評価' %>
-<%= f.hidden_field :total_score, class: 'form-control' %>
-<div id="post_raty"></div>
-<script>
-  // scriptファイルをどのidの部分に配置するかを指定
-  let elem = document.querySelector('#post_raty');
-  let opt = {
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'post[total_score]',
-    //星画像の指定などのオプションをここに記述,
-   };
-  raty(elem,opt);
-</script>
-
-<%= '読みやすさ' %>
-  <%= f.hidden_field :read_score, class: 'form-control' %>
-<div id="read_score_raty"></div>
-<script>
-  // scriptファイルをどのidの部分に配置するかを指定
-  let read_score_raty_elem = document.querySelector('#read_score_raty');
-  let read_score_raty_opt = {
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'post[read_score]',
-    //星画像の指定などのオプションをここに記述,
-   };
-  raty(read_score_raty_elem, read_score_raty_opt);
-</script>
-
-<%= '価格の妥当性' %>
-  <%= f.hidden_field :price_score, class: 'form-control' %>
-<div id="price_score_raty"></div>
-<script>
-  // scriptファイルをどのidの部分に配置するかを指定
-  let price_score_raty_elem = document.querySelector('#price_score_raty');
-  let price_score_raty_opt = {
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'post[price_score]',
-    //星画像の指定などのオプションをここに記述,
-   };
-  raty(price_score_raty_elem, price_score_raty_opt);
-</script>
-
-
-<%= '実用度' %>
-  <%= f.hidden_field :usability_score, class: 'form-control' %>
-<div id="usability_score_raty"></div>
-<script>
-  // scriptファイルをどのidの部分に配置するかを指定
-  let usability_score_raty_elem = document.querySelector('#usability_score_raty');
-  let usability_score_raty_opt = {
-    starOn: "<%= asset_path('star-on.png') %>",
-    starOff: "<%= asset_path('star-off.png') %>",
-    starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'post[usability_score]',
-    //星画像の指定などのオプションをここに記述,
-   };
-  raty(usability_score_raty_elem, usability_score_raty_opt);
-</script>
-<%= f.submit '投稿' %>
-<% end %>
+<div class="container p-5">
+  <div class="row">
+    <h1>テキストのレビューを投稿する</h1>
+  </div>
+  
+  <div class="row">
+    <table class='table'>
+    <td><%= form_with model: @post do |f| %></td>
+    <tr>
+      <th><%= f.label :"商品画像" %></th>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :"商品名" %></th>
+      <td><%= f.text_field :text_name %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :"商品説明" %></th>
+      <td><%= f.text_area :introduction %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :"レビュー" %></th>
+      <td><%= f.text_area :review %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :"価格" %></th>
+      <td><%= f.text_field :price %></td>
+    </tr>
+    
+    <tr>
+      <th><%= f.label :"総合評価" %></th>
+      <td><%= f.hidden_field :total_score, class: 'form-control' %></td>
+    </tr>
+    <tr>
+      <td>
+        <div id="post_raty"></div>
+        <script>
+          // scriptファイルをどのidの部分に配置するかを指定
+          let elem = document.querySelector('#post_raty');
+          let opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'post[total_score]',
+            //星画像の指定などのオプションをここに記述,
+           };
+          raty(elem,opt);
+        </script>
+      </td>
+    </tr>
+    
+    <tr>
+      <th><%= f.label :"読みやすさ" %></th>
+      <td><%= f.hidden_field :read_score, class: 'form-control' %></td>
+    </tr>
+    <tr>
+      <td>
+      <div id="read_score_raty"></div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        let read_score_raty_elem = document.querySelector('#read_score_raty');
+        let read_score_raty_opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[read_score]',
+          //星画像の指定などのオプションをここに記述,
+         };
+        raty(read_score_raty_elem, read_score_raty_opt);
+      </script>
+      </td>
+    </tr>
+    
+    <tr>
+      <th><%= f.label :"価格の妥当性" %></th>
+      <td><%= f.hidden_field :price_score, class: 'form-control' %></td>
+    </tr>
+    <tr>
+      <td>
+      <div id="price_score_raty"></div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        let price_score_raty_elem = document.querySelector('#price_score_raty');
+        let price_score_raty_opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[price_score]',
+          //星画像の指定などのオプションをここに記述,
+         };
+        raty(price_score_raty_elem, price_score_raty_opt);
+      </script>
+      <td>
+    </tr>
+    
+    <tr>
+      <th><%= f.label :"実用度" %></th>
+      <td><%= f.hidden_field :usability_score, class: 'form-control' %></td>
+    </tr>
+    <tr>
+      <td>
+      <div id="usability_score_raty"></div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        let usability_score_raty_elem = document.querySelector('#usability_score_raty');
+        let usability_score_raty_opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[usability_score]',
+          //星画像の指定などのオプションをここに記述,
+         };
+        raty(usability_score_raty_elem, usability_score_raty_opt);
+      </script>
+      <td>
+    </tr>
+    
+    </table>
+    
+      <%= f.submit '投稿' %>
+      <% end %>
+  </div>
+</div>
