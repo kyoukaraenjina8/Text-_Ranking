@@ -54,8 +54,7 @@ ActiveRecord::Schema.define(version: 2023_06_09_150852) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "book_id", null: false
-    t.string "comment_user", null: false
+    t.integer "post_id", null: false
     t.text "comment_introduction", null: false
     t.float "total_score", default: 0.0, null: false
     t.float "read_score", default: 0.0, null: false

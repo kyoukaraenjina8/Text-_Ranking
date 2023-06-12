@@ -1,0 +1,39 @@
+<h1>index</h1>
+<%= @posts.each do |post| %>
+
+<div>
+  <%= link_to post_path(post.id) do %>
+  <%= image_tag post.get_image  %>
+  <% end %>
+  <p>投稿者名：<%= post.user.name %></p>
+  <p>レビュー：<%= post.review %></p>
+  <p>商品名：<%= post.text_name %></p>
+  <p>商品説明：<%= post.introduction %></p>
+  <p>レビュー：<%= post.review %></p>
+  <p>価格：<%= post.price %></p>
+
+<div id='post_rate'></div>
+            <script>
+new Raty(document.querySelector('#post_rate'), {
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'post[total_score]',
+      half: false
+    });
+          </script>
+          
+  <p>読みやすさ：<%#= post.read_score %></p>
+  <p>価格の妥当性：<%#= post.price_score %></p>
+  <p>実用度：<%#= post.usability_score %></p>
+
+<%= @comments.each do |comment| %>
+
+<div>
+  <p>投稿者名：<%= comment.user.name %></p>
+  <p>コメント：<%= comment.comment_introduction %></p>
+</div>
+<% end %>
+<%= link_to "削除", url:post_comment_path method: :delete %>
+<% end %>

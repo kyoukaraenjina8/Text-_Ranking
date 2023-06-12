@@ -1,0 +1,20 @@
+<h2>投稿編集</h2>
+<%= form_with model: @post_edit do |f| %>
+
+<%= "商品画像" %>
+<%= f.file_field :get_image, placeholder: "プロフィール画像", accept: "image/*" %>
+
+<%= '商品名' %>
+<%= f.text_field :text_name , autofocus: true %>
+
+<%= '商品説明' %>
+<%= f.text_area :introduction %>
+
+<%= 'レビュー' %>
+<%= f.text_area :review %>
+
+<%= '価格' %>
+<%= f.text_field :price %>
+
+<%= f.submit "変更を保存" %>
+<% end %>
