@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
     @post_edit = Post.find(params[:id])
     @post_edit.update(post_params)
     redirect_to post_path(@post_edit)
-    
+
   end
   def index
     @posts = Post.all

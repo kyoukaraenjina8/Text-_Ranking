@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+  
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to user_path(user), notice: 'guestuserでログインしました。'
+  end
 #退会しているかを判断するメソッド 実装進んできたらコメントアウトを外す。
 #  before_action :user_state, only: [:create]
 
