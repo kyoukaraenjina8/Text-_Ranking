@@ -6,7 +6,7 @@ get "/homes/about" => "homes#about", as: "about"
 scope module: :public do
   root to: "posts#index"
   resource :posts, only: [:new,:create]
-  resources :posts, only: [:show,:index,:destroy,:edit,:update] do
+  resources :posts, only: [:show,:index,:destroy,:edit,:update,:rank] do
     resources :comments, only: [:create,:destroy]
   end
 end

@@ -12,6 +12,11 @@ class Public::CommentsController < ApplicationController
     @comments = Comment.all
   end
   
+    def destroy
+    Comment.find(params[:id]).destroy
+    redirect_to root_path
+  end
+  
   private
 
   def post_comment_params

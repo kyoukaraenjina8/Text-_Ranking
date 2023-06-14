@@ -1,17 +1,89 @@
 <h1>textの詳細</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
 <div>
-  <p>商品名：<%= @post.text_name %></p>
-  <p>説明：<%= @post.introduction %></p>
-  <p>投稿者名：<%= @post.user.name %></p>
-  <p>価格：<%= @post.price %></p>
-  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-</div>
-
   <% if @post.user == current_user %>
     <%= link_to "削除", post_path(@post), method: :delete %>
     <%= link_to "投稿編集", edit_post_path(@post) %>
   <% end %>
+</div>
+<div>
+  <%= link_to post_path(@post.id) do %>
+    <%= image_tag @post.get_image(150, 150) %>
+  <% end %>
+  <p>投稿者名：<%= @post.user.name %></p>
+  <p>商品名：<%= @post.text_name %></p>
+  <p>説明：<%= @post.introduction %></p>
+  <p>レビュー：<%= @post.review %></p>
+  <p>価格：<%= @post.price %></p>
+  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+</div>
+
+<div>
+  <p><%= '総合評価' %></p>
+      <div id="post_raty_<%= @post.id %>" data-score="<%= @post.total_score %>"></div>
+        <script>
+              // scriptファイルをどのidの部分に配置するかを指定
+        raty(document.querySelector('#post_raty_<%= @post.id %>'),
+            {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: <%= @post.total_score %>,
+              readOnly: true,
+        //星画像の指定などのオプションをここに記述,
+            }
+        );
+        </script>
+
+      <%= '読みやすさ' %>
+      <div id="read_score_raty_<%= @post.id %>" data-score="<%= @post.read_score %>"></div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        raty(document.querySelector('#read_score_raty_<%= @post.id %>'),
+            {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: <%= @post.read_score %>,
+              readOnly: true,
+        //星画像の指定などのオプションをここに記述,
+            }
+        );
+      </script>
+
+      <%= '価格の妥当性' %>
+      <div id="price_score_raty_<%= @post.id %>" data-score="<%= @post.price_score %>"></div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        raty(document.querySelector('#price_score_raty_<%= @post.id %>'),
+            {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: <%= @post.price_score %>,
+              readOnly: true,
+        //星画像の指定などのオプションをここに記述,
+            }
+        );
+      </script>
+
+      <%= '実用度' %>
+      <div id="usability_score_raty_<%= @post.id %>" data-score="<%= @post.usability_score %>"></div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        raty(document.querySelector('#usability_score_raty_<%= @post.id %>'),
+            {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: <%= @post.usability_score %>,
+              readOnly: true,
+        //星画像の指定などのオプションをここに記述,
+            }
+        );
+      </script>
+</div>
+
+
 
 
   <div>

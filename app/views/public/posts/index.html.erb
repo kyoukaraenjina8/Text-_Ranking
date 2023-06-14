@@ -7,6 +7,7 @@
     <div class="row">
 
       <div class="col-4">
+      <%= link_to "コメントする", post_path(post.id) %>
       <%= link_to post_path(post.id) do %>
         <%= image_tag post.get_image(150, 150) %>
       <% end %>
@@ -88,7 +89,6 @@
         //星画像の指定などのオプションをここに記述,
             }
         );
-
       </script>
       </div>
 
@@ -99,7 +99,10 @@
   <div>
     <p>投稿者名：<%= comment.user.name %></p>
     <p>コメント：<%= comment.comment_introduction %></p>
-    <p><%#= link_to "削除", post_comment_path, method: :delete %></p>
+    <% if comment.user == current_user %>
+        <%= link_to "削除", post_comment_path(post, comment.id), method: :delete %>
+    <% end %>
+
       <%= '総合評価' %>
       <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.total_score %>"></div>
         <script>
