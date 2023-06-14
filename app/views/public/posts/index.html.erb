@@ -38,6 +38,7 @@
               starHalf: "<%= asset_path('star-half.png') %>",
               score: <%= post.total_score %>,
               readOnly: true,
+              // score: "#{comments.average(:total_score).to_f.round(1)}",
         //星画像の指定などのオプションをここに記述,
             }
         );
