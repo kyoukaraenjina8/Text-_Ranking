@@ -3,10 +3,10 @@
     <h1>投稿編集</h1>
   </div>
 
-  <div class="row">
+  <div class="row mt-2">
+    <div class="col-8 mx-auto text-center">
 <%= form_with model: @post_edit do |f| %>
     <table class='table'>
-    <td></td>
     <tr>
       <th><%= f.label :"商品画像" %></th>
       <td><%= f.file_field :image, accept: "image/*" %></td>
@@ -120,4 +120,5 @@
     <%= f.submit '変更を保存' %>
     <% end %>
   </div>
+</div>
 </div>
