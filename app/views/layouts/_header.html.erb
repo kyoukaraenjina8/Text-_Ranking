@@ -1,0 +1,48 @@
+    <%= stylesheet_link_tag '_header' %>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-body border-bottom border-dark">
+    <div class="container">
+      <a class="navbar-brand text-dark m-2" href="/">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li><strong>〜〜ようこそ、<%= current_user.name %>さん〜〜</strong></li>
+          <li>
+            <%= link_to '投稿フォーム', new_posts_path, class:'nav-link text-light btn btn-dark ml-5' %>
+          </li>
+          <li>
+            <%= link_to 'text一覧', root_path, class:'nav-link text-light btn btn-dark ml-2' %>
+          </li>
+          <li>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:'nav-link text-light btn btn-dark ml-2' %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to 'text一覧', root_path, class:'nav-link text-light btn btn-dark ml-2' %>
+          </li>
+          <li>
+            <%=  link_to '新規登録', new_user_registration_path, class:'nav-link text-light btn btn-dark ml-2' %>
+          </li>
+          <li>
+            <%= link_to 'ログイン', new_user_session_path, class:'nav-link text-light btn btn-dark ml-2' %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+      <% if user_signed_in? %>
+  <div class="search_form">
+    <%= form_with url: searches_search_path, local: true, method: :get do |f| %>
+      <%= f.text_field :word %>
+      <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+   <% end %>
+
+    </div>
+  </nav>
+</header>

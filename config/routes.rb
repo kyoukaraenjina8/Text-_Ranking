@@ -4,8 +4,10 @@ get "/homes/top" => "homes#top", as: "top"
 get "/homes/about" => "homes#about", as: "about"
 
 scope module: :public do
+  get '/searches/search' => 'searches#search'
   get '/posts/rank' => 'posts#rank'
   root to: "posts#index"
+  
   resource :posts, only: [:new,:create]
   resources :posts, only: [:show,:index,:destroy,:edit,:update,] do
     resources :comments, only: [:create,:destroy]
