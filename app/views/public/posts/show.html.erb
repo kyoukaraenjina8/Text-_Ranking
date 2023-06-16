@@ -1,5 +1,5 @@
 <div class= "container">
-  <h1>textの詳細</h1>
+  <h1>text詳細</h1>
   <div>
     <% if @post.user == current_user %>
       <%= link_to "削除", post_path(@post), method: :delete %>
@@ -12,6 +12,8 @@
     <%= link_to post_path(@post.id) do %>
       <%= image_tag @post.get_image(150, 150) %>
     <% end %>
+    </div>
+    <div class="col-4">
     <p>投稿者名：<%= @post.user.name %></p>
     <p>商品名：<%= @post.text_name %></p>
     <p>説明：<%= @post.introduction %></p>
@@ -87,7 +89,7 @@
   </div>
   <h4>新着コメント</h4>
   <div class="row">
-    <% @post.comments.each do |comment| %>
+    <% @post.comments.last(3).each do |comment| %>
     <div class="col-3">
     <p>投稿者名：<%= comment.user.name %></p>
     <p>コメント：<%= comment.comment_introduction %></p>
@@ -154,12 +156,9 @@
       </script>
     </div>
     <% end %>
-  </div>
-        <h4>コメントの投稿</h4>
-  <div class="row">
-    <div class="col-6">
+        <div class="col-3">
+          <h4>コメントの投稿</h4>
       <%= form_with model: [@post, @post_comment] do |f| %>
-
       <%= f.label :"総合評価" %>
       <%= f.hidden_field :total_score, class: 'form-control' %>
               <div id="total_post_raty"></div>
@@ -222,7 +221,6 @@
              };
             raty(usability_score_raty_elem, usability_score_raty_opt);
           </script>
-
         <%= f.text_area :comment_introduction, rows: '5', placeholder: "コメントをここに" %>
         <%= f.submit "送信する" %>
       <% end %>
