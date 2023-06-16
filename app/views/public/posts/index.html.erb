@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag '_footer' %>
-
+<%= flash[:notice] %>
 <div class= "container">
 
   <h1>Ranking</h1>
@@ -7,12 +7,10 @@
 <% @posts.each do |post| %>
 
   <div class="row mt-5">
-
     <div class="col-4">
       <%= link_to post_path(post.id) do %>
         <%= image_tag post.get_image(150, 150) %>
       <% end %>
-      <P><%= link_to "このテキストの詳細&評価はこちら", post_path(post.id) %></P>
     </div>
 
     <div class="col-4">
@@ -95,7 +93,11 @@
       </script>
     </div>
   </div>
-
+  <div class="row">
+    <div class="col">
+      <P><%= link_to "このテキストを評価する", post_path(post.id) %></P>
+    </div>
+  </div>
   <div class="row">
     <% post.comments.each do |comment| %>
     <div class="col-3 mt-5">

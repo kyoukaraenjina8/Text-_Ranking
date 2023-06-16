@@ -1,17 +1,17 @@
 <div class= "container">
   <h1>text詳細</h1>
-  <div>
-    <% if @post.user == current_user %>
-      <%= link_to "削除", post_path(@post), method: :delete %>
-      <%= link_to "投稿編集", edit_post_path(@post) %>
-    <% end %>
-  </div>
 
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-4">
     <%= link_to post_path(@post.id) do %>
       <%= image_tag @post.get_image(150, 150) %>
     <% end %>
+      <div>
+        <% if @post.user == current_user %>
+          <%= link_to "削除", post_path(@post), method: :delete %>
+          <%= link_to "投稿編集", edit_post_path(@post) %>
+        <% end %>
+      </div>
     </div>
     <div class="col-4">
     <p>投稿者名：<%= @post.user.name %></p>
@@ -87,7 +87,7 @@
         </script>
     </div>
   </div>
-  <h4>新着コメント</h4>
+  <h4>3件の新着コメント</h4>
   <div class="row">
     <% @post.comments.last(3).each do |comment| %>
     <div class="col-3">
@@ -157,7 +157,7 @@
     </div>
     <% end %>
         <div class="col-3">
-          <h4>コメントの投稿</h4>
+          <h4>テキストを評価する</h4>
       <%= form_with model: [@post, @post_comment] do |f| %>
       <%= f.label :"総合評価" %>
       <%= f.hidden_field :total_score, class: 'form-control' %>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'users/confirm_withdraw'
+  end
 get "/homes/top" => "homes#top", as: "top"
 get "/homes/about" => "homes#about", as: "about"
 
@@ -16,7 +19,8 @@ scope module: :public do
   get '/searches/search' => 'searches#search'
   get '/posts/rank' => 'posts#rank'
   root to: "posts#index"
-  
+  get 'users/confirm_withdraw' => 'users#confirm_withdraw', as: 'confirm_withdraw'
+  patch '/users/withdraw' => 'users#withdraw'
   resource :posts, only: [:new,:create]
   resources :posts, only: [:show,:index,:destroy,:edit,:update,] do
     resources :comments, only: [:create,:destroy]
@@ -41,7 +45,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
 devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
