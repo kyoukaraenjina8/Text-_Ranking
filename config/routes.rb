@@ -3,6 +3,15 @@ Rails.application.routes.draw do
 get "/homes/top" => "homes#top", as: "top"
 get "/homes/about" => "homes#about", as: "about"
 
+
+namespace :admin do
+  resources :posts, only: [:index]
+  resources :users, only: [:index]
+get 'users/:id/post_index' => 'users#post_index'
+get 'users/:id/comment_index' => 'users#comment_index'
+
+end
+
 scope module: :public do
   get '/searches/search' => 'searches#search'
   get '/posts/rank' => 'posts#rank'

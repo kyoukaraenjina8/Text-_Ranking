@@ -1,0 +1,48 @@
+<div class="container p-5">
+  <div class="row">
+    <h1><%= @user_post.name %>さんの投稿一覧（全<%= @user_post.posts.count %>件）</h1>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>投稿日時</th>
+          <th>テキスト名</th>
+          <th>投稿数</th>
+          <th>テキスト説明</th>
+          <th>レビュー内容</th>
+          <th>価格</th>
+          <th>コメント数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <%= link_to root_path do %>
+                <%= post.created_at.strftime('%Y/%m/%d') %>
+              <% end %>
+            </td>
+            <td>
+              <%= post.text_name %>
+            </td>
+            <td>
+              <%= post.text_name %>
+            </td>
+            <td>
+              <%= post.introduction %>
+            </td>
+            <td>
+              <%= post.review %>
+            </td>
+            <td>
+              <%= post.price %>
+            </td>
+            <td>
+              <%= post.comments.count %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<%= paginate @posts %>
+  </div>
+</div>

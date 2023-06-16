@@ -1,23 +1,23 @@
-<%= stylesheet_link_tag '_hukidasi' %>
+<%= stylesheet_link_tag '_footer' %>
 
 <div class= "container">
 
-<h1>index</h1>
+  <h1>Ranking</h1>
 
 <% @posts.each do |post| %>
 
-  <div class="row">
+  <div class="row mt-5">
 
     <div class="col-4">
-      <%= link_to "コメントする", post_path(post.id) %>
       <%= link_to post_path(post.id) do %>
         <%= image_tag post.get_image(150, 150) %>
       <% end %>
+      <P><%= link_to "このテキストの詳細&評価はこちら", post_path(post.id) %></P>
     </div>
 
     <div class="col-4">
       <%= '投稿者名' %>
-      <%= post.user.name %>
+      <%= post.user.name %>さん
       <%= '商品名' %>
       <%= post.text_name %>
       <%= '商品説明' %>
@@ -96,9 +96,9 @@
     </div>
   </div>
 
-  <div class="row mt-5">
+  <div class="row">
     <% post.comments.each do |comment| %>
-    <div class="col-3">
+    <div class="col-3 mt-5">
     <p>投稿者名：<%= comment.user.name %></p>
     <p>コメント：<%= comment.comment_introduction %></p>
     <% if comment.user == current_user %>
