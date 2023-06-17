@@ -13,6 +13,9 @@ class Post < ApplicationRecord
       image.variant(resize_to_limit: [width, height]).processed
   end
 
+  def self.post_rank
+    @posts = Post.find(Comment.group(:total_score).order('avg(total_score) desc').limit(3).pluck(:post_id))
+  end
 
 # 検索方法分岐
   def self.looks(search, word)
