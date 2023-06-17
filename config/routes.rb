@@ -1,11 +1,25 @@
 Rails.application.routes.draw do
+root to:"homes#top"
+get "/homes/about" => "homes#about", as: "about"
+
+devise_for :users,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+# URL /admin/sign_in ...
+devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
+
+devise_scope :user do
+    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   namespace :public do
     get 'users/confirm_withdraw'
   end
-get "/homes/top" => "homes#top", as: "top"
-get "/homes/about" => "homes#about", as: "about"
-
+  
 
 namespace :admin do
   resources :posts, only: [:index]
@@ -20,6 +34,7 @@ scope module: :public do
   get '/posts/rank' => 'posts#rank'
   get 'users/confirm_withdraw' => 'users#confirm_withdraw', as: 'confirm_withdraw'
   patch '/users/withdraw' => 'users#withdraw'
+  resources :users, only: [:show, :edit]
   resource :posts, only: [:new,:create]
   resources :posts, only: [:show,:index,:destroy,:edit,:update,] do
     resources :comments, only: [:create,:destroy]
@@ -30,22 +45,6 @@ end
 #   resources :posts, only: [:new,:destroy,:create]
 # end
 
-# 顧客用
-# URL /customers/sign_in ...
-devise_for :users,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
-
-# 管理者用
-# URL /admin/sign_in ...
-devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
-
-devise_scope :user do
-    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
-  end
 
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -65,7 +65,7 @@
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
             starHalf: "<%= asset_path('star-half.png') %>",
-            score: <%= comment.total_score = comment.sum(:read_score,:price_score,:usability_score)/3 %>
+            score: <%= comment.total_score %>,
             readOnly: true,
             half: true,
           }

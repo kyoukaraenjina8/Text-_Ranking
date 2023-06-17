@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 d-grid gap-2 mx-auto">
+      <h3 class="text-center m-4">マイページ</h3>
+      <strong>登録情報</strong>
+      <%= link_to '編集する', edit_users_path, class: "btn btn-outline-success btn-sm" %>
+      <table class='table table-bordered mt-2'>
+        <tr>
+          <td class="table-secondary col-md-2">氏名：</td>
+          <td>
+            <%= current_user.name %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-secondary">メールアドレス：</td>
+          <td><%= current_user.email %></td>
+        </tr>
+      </table>
+      <% @user_post.each do |user_post| %>
+
+  <div class="row mt-5">
+    <div class="col-4">
+      <%= link_to post_path(user_post.id) do %>
+        <%= image_tag user_post.get_image(150, 150) %>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <%= '投稿者名' %>
+      <%= user_post.user.name %>さん
+      <%= '商品名' %>
+      <%= user_post.text_name %>
+      <%= '商品説明' %>
+      <%= user_post.introduction %>
+      <%= 'レビュー' %>
+      <%= user_post.review %>
+      <%= '価格' %>
+      <%= user_post.price %>
+    </div>
+    <div class="col-4">
+      <%= 'みんなの評価' %>
+      <div id="post_raty_<%= user_post.id %>" data-score="<%= user_post.comments.average(:total_score).to_f.round(1) %>"></div>
+      <script>
+            // scriptファイルをどのidの部分に配置するかを指定
+      raty(document.querySelector('#post_raty_<%= user_post.id %>'),
+          {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            score: <%= user_post.comments.average(:total_score).to_f.round(1) %>,
+            readOnly: true,
+            half: true,
+          }
+      );
+      </script>
+    </div>
+
+ 
+ 
+      <strong>配送先：<%#= link_to "一覧を見る", deliveries_path, class: 'btn-md btn-outline-primary' %></strong><br>
+      <strong>注文履歴：<%#= link_to "一覧を見る", orders_path, class: 'btn-md btn-outline-primary' %></strong>
+    </div>
+  </div>
+</div>
