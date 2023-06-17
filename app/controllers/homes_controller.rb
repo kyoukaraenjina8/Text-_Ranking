@@ -1,7 +1,6 @@
 class HomesController < ApplicationController
   def top
-    @posts = Post.all
-    
+        @posts = Post.post_rank
   end
 
   def about

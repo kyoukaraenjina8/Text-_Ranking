@@ -12,9 +12,9 @@ class Public::CommentsController < ApplicationController
     @comments = Comment.all
   end
   
-    def destroy
+  def destroy
     Comment.find(params[:id]).destroy
-    redirect_to root_path
+    redirect_to posts_path
   end
   
   private

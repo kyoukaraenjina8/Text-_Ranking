@@ -1,15 +1,11 @@
 <%= stylesheet_link_tag '_footer' %>
 <%= flash[:notice] %>
 <div class= "container">
+    <h1>全てのtext一覧（全<%= @posts.count %>件）</h1>
 
-  <h1>Ranking</h1>
 
-<% @posts.each.with_index(1) do |post, i| %>
-  <div class="row">
-    <div class="col text-center">
-      <strong><h1><%= "第#{i}位 #{post.ranking}" %></h1></strong>
-    </div>
-  </div>
+<% @posts.each do |post| %>
+
   <div class="row mt-5">
     <div class="col-4">
       <%= link_to post_path(post.id) do %>
@@ -30,8 +26,8 @@
     </div>
 
     <div class="col-4">
-      <%= '総合評価' %>
-      <div id="post_raty_<%= post.id %>" data-score="<%= post.total_score %>"></div>
+      <%= 'みんなの評価' %>
+      <div id="post_raty_<%= post.id %>" data-score="<%= post.comments.average(:total_score).to_f.round(1) %>"></div>
       <script>
             // scriptファイルをどのidの部分に配置するかを指定
       raty(document.querySelector('#post_raty_<%= post.id %>'),
@@ -39,60 +35,11 @@
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
             starHalf: "<%= asset_path('star-half.png') %>",
-            score: <%= post.total_score %>,
+            score: <%= post.comments.average(:total_score).to_f.round(1) %>,
             readOnly: true,
-            // score: "#{comments.average(:total_score).to_f.round(1)}",
-      //星画像の指定などのオプションをここに記述,
+            half: true,
           }
       );
-      </script>
-
-      <%= '読みやすさ' %>
-      <div id="read_score_raty_<%= post.id %>" data-score="<%= post.read_score %>"></div>
-      <script>
-        // scriptファイルをどのidの部分に配置するかを指定
-        raty(document.querySelector('#read_score_raty_<%= post.id %>'),
-            {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              score: <%= post.read_score %>,
-              readOnly: true,
-        //星画像の指定などのオプションをここに記述,
-            }
-        );
-      </script>
-
-      <%= '価格の妥当性' %>
-      <div id="price_score_raty_<%= post.id %>" data-score="<%= post.price_score %>"></div>
-      <script>
-        // scriptファイルをどのidの部分に配置するかを指定
-        raty(document.querySelector('#price_score_raty_<%= post.id %>'),
-            {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              score: <%= post.price_score %>,
-              readOnly: true,
-        //星画像の指定などのオプションをここに記述,
-            }
-        );
-      </script>
-
-      <%= '実用度' %>
-      <div id="usability_score_raty_<%= post.id %>" data-score="<%= post.usability_score %>"></div>
-      <script>
-        // scriptファイルをどのidの部分に配置するかを指定
-        raty(document.querySelector('#usability_score_raty_<%= post.id %>'),
-            {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              score: <%= post.usability_score %>,
-              readOnly: true,
-        //星画像の指定などのオプションをここに記述,
-            }
-        );
       </script>
     </div>
   </div>
@@ -118,9 +65,9 @@
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
             starHalf: "<%= asset_path('star-half.png') %>",
-            score: <%= comment.total_score %>,
+            score: <%= comment.total_score = comment.sum(:read_score,:price_score,:usability_score)/3 %>
             readOnly: true,
-      //星画像の指定などのオプションをここに記述,
+            half: true,
           }
       );
       </script>
@@ -135,7 +82,7 @@
             starHalf: "<%= asset_path('star-half.png') %>",
             score: <%= comment.read_score %>,
             readOnly: true,
-      //星画像の指定などのオプションをここに記述,
+            half: true,
           }
       );
       </script>
@@ -149,7 +96,7 @@
             starHalf: "<%= asset_path('star-half.png') %>",
             score: <%= comment.price_score %>,
             readOnly: true,
-      //星画像の指定などのオプションをここに記述,
+            half: true,
           }
       );
       </script>
@@ -163,7 +110,7 @@
             starHalf: "<%= asset_path('star-half.png') %>",
             score: <%= comment.usability_score %>,
             readOnly: true,
-      //星画像の指定などのオプションをここに記述,
+            half: true,
           }
       );
       </script>
@@ -172,3 +119,5 @@
   </div>
 <% end %>
 </div>
+
+

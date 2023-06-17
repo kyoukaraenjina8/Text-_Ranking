@@ -2,10 +2,14 @@
 <%= flash[:notice] %>
 <div class= "container">
 
-  <h1>Text番付へようこそ!一覧（投稿順）</h1>
+  <h1>Ranking</h1>
 
-<% @posts.each do |post| %>
- 
+<% @posts.each.with_index(1) do |post, i| %>
+  <div class="row">
+    <div class="col text-center">
+      <strong><h1><%= "第#{i}位 #{post.ranking}" %></h1></strong>
+    </div>
+  </div>
   <div class="row mt-5">
     <div class="col-4">
       <%= link_to post_path(post.id) do %>
