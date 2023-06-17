@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2023_06_15_092038) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "ranking"
     t.string "text_name", null: false
     t.text "introduction", null: false
     t.text "review", null: false

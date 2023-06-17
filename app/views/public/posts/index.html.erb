@@ -5,16 +5,18 @@
   <h1>Ranking</h1>
 
 <% @posts.each.with_index(1) do |post, i| %>
-
+  <div class="row">
+    <div class="col text-center">
+      <strong><h1><%= "第#{i}位 #{post.ranking}" %></h1></strong>
+    </div>
+  </div>
   <div class="row mt-5">
     <div class="col-4">
       <%= link_to post_path(post.id) do %>
         <%= image_tag post.get_image(150, 150) %>
       <% end %>
     </div>
-
     <div class="col-4">
-      <%= 第= i位 = post %>
       <%= '投稿者名' %>
       <%= post.user.name %>さん
       <%= '商品名' %>

@@ -24,6 +24,7 @@ class Public::PostsController < ApplicationController
   end
   def index
     @posts = Post.post_rank
+    # @posts = Post.all
   end
   # def rank
   #   @posts = Post.find(Comment.group(:total_score).order('avg(total_score) desc').pluck(:post_id))

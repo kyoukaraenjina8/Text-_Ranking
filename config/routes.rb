@@ -18,7 +18,6 @@ end
 scope module: :public do
   get '/searches/search' => 'searches#search'
   get '/posts/rank' => 'posts#rank'
-  root to: "posts#index"
   get 'users/confirm_withdraw' => 'users#confirm_withdraw', as: 'confirm_withdraw'
   patch '/users/withdraw' => 'users#withdraw'
   resource :posts, only: [:new,:create]
