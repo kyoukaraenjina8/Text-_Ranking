@@ -16,6 +16,9 @@
             <%= link_to 'テキスト投稿', new_posts_path, class:'nav-link text-light btn btn-dark ml-5' %>
           </li>
           <li>
+            <%= link_to 'マイページ', user_path(current_user) , class:'nav-link text-light btn btn-dark ml-2' %>
+          </li>
+          <li>
             <%= link_to 'ランキングを見る', root_path, class:'nav-link text-light btn btn-dark ml-2' %>
           </li>
           <li>

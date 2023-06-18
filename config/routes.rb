@@ -19,11 +19,11 @@ devise_scope :user do
   namespace :public do
     get 'users/confirm_withdraw'
   end
-  
+
 
 namespace :admin do
-  resources :posts, only: [:index]
-  resources :users, only: [:index]
+  resources :posts, only: [:index,:destroy]
+  resources :users, only: [:index,:edit]
 get 'users/:id/post_index' => 'users#post_index'
 get 'users/:id/comment_index' => 'users#comment_index'
 
@@ -34,9 +34,9 @@ scope module: :public do
   get '/posts/rank' => 'posts#rank'
   get 'users/confirm_withdraw' => 'users#confirm_withdraw', as: 'confirm_withdraw'
   patch '/users/withdraw' => 'users#withdraw'
-  resources :users, only: [:show, :edit]
+  resources :users, only: [:show,:edit,:update]
   resource :posts, only: [:new,:create]
-  resources :posts, only: [:show,:index,:destroy,:edit,:update,] do
+  resources :posts, only: [:show,:index,:destroy,:edit,:update] do
     resources :comments, only: [:create,:destroy]
   end
 end

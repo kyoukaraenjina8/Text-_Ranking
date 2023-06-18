@@ -15,7 +15,7 @@ class Public::UsersController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def confirm_withdraw
   end
 
@@ -30,6 +30,6 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :is_deleted,)
+    params.require(:user).permit(:name, :email, :is_deleted, :encrypted_password)
   end
 end
