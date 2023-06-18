@@ -5,7 +5,7 @@
 
   <div class="row mt-2">
     <div class="col-8 mx-auto text-center">
-<%= form_with model: @admin_edit do |f| %>
+        <%= form_with model: @admin_edit, url: admin_user_path do |f| %>
         <div class="field">
           <%= f.label :name %><br />
           <%= f.text_field :name, autofocus: true, autocomplete: "name" %>

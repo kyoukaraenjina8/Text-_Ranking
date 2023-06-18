@@ -20,15 +20,6 @@ devise_scope :user do
     get 'users/confirm_withdraw'
   end
 
-
-namespace :admin do
-  resources :posts, only: [:index,:destroy]
-  resources :users, only: [:index,:edit]
-get 'users/:id/post_index' => 'users#post_index'
-get 'users/:id/comment_index' => 'users#comment_index'
-
-end
-
 scope module: :public do
   get '/searches/search' => 'searches#search'
   get '/posts/rank' => 'posts#rank'
@@ -40,6 +31,16 @@ scope module: :public do
     resources :comments, only: [:create,:destroy]
   end
 end
+
+namespace :admin do
+  resources :posts, only: [:index,:destroy,:index]
+  resources :users, only: [:index,:edit,:update]
+  delete '/users/destroy_comment' => 'users#destroy_comment'
+get 'users/:id/post_index' => 'users#post_index'
+get 'users/:id/comment_index' => 'users#comment_index'
+
+end
+
 
 # namespace :admin do
 #   resources :posts, only: [:new,:destroy,:create]

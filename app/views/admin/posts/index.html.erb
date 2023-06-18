@@ -1,0 +1,100 @@
+<!--<div class="container p-5">-->
+<!--  <div class="row">-->
+<!--    <h3>投稿一覧（全<%= @posts.count %>件）</h3>-->
+<!--    <table class='table'>-->
+<!--      <thead>-->
+<!--        <tr>-->
+<!--          <th>投稿日時</th>-->
+<!--          <th>テキスト名</th>-->
+<!--          <th>テキスト説明</th>-->
+<!--          <th>レビュー内容</th>-->
+<!--          <th>価格</th>-->
+<!--          <th>コメント数</th>-->
+<!--        </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--        <% @posts.each do |post| %>-->
+<!--          <tr>-->
+<!--            <td>-->
+<!--              <%= link_to root_path do %>-->
+<!--                <%= post.created_at.strftime('%Y/%m/%d') %>-->
+<!--              <% end %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= post.text_name %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= post.introduction %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= post.review %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= post.price %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= post.comments.count %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= link_to "削除", admin_post_path(post.id), method: :delete %>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--        <% end %>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--<%= paginate @posts %>-->
+<!--  </div>-->
+<!--    <div class="row">-->
+    <h3>コメント一覧（全<%#= @posts.comments.count %>件）</h3>
+<!--    <table class='table'>-->
+<!--      <thead>-->
+<!--        <tr>-->
+<!--          <th>投稿日時</th>-->
+<!--          <th>テキスト名</th>-->
+<!--          <th>テキスト説明</th>-->
+<!--          <th>コメント内容</th>-->
+<!--          <th>総合評価</th>-->
+<!--          <th>読みやすさ</th>-->
+<!--          <th>価格の妥当性</th>-->
+<!--          <th>実用性</th>-->
+<!--        </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--        <% @posts.each do |comment| %>-->
+<!--          <tr>-->
+<!--            <td>-->
+<!--              <%= link_to root_path do %>-->
+<!--                <%= comment.created_at.strftime('%Y/%m/%d') %>-->
+<!--              <% end %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= comment.text_name %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= comment.introduction %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= comment.comment_introduction %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= comment.total_score %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= comment.read_score %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= comment.price_score %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= comment.usability_score %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%= link_to "削除", post_comment_path(comment.id), method: :delete %>-->
+<!--            </td>-->
+<!--          </tr>-->
+<!--        <% end %>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--<%= paginate @comments %>-->
+<!--  </div>-->
+<!--</div>-->

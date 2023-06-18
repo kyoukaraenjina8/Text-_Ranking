@@ -3,7 +3,7 @@
     <div class="col-6 d-grid gap-2 mx-auto mt-4">
       <h2>プロフィール編集</h2>
 
-      <%= form_with model: @user_edit, url: user_path do |f| %>
+      <%= form_with model: @user_edit, url: user_path  do |f| %>
       <%= render "public/shared/error_messages", resource: @user_edit %>
 
         <div class="field">
