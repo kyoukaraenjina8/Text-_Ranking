@@ -5,28 +5,26 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  def after_sign_out_path_for(resource)
-    root_path
-  end
+ private
 
-  private
-
+  # ログイン後のリダイレクト先
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.is_a?(Admin)
       admin_users_path
     else
-      new_admin_session_path
+      root_path
     end
   end
 
+  # ログアウト後のリダイレクト先
   def after_sign_out_path_for(resource_or_scope)
+
     if resource_or_scope == :admin
-      admin_users_path
-    else
       new_admin_session_path
+    else
+      root_path
     end
   end
-
   protected
 
   def configure_permitted_parameters

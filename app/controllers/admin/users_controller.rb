@@ -23,6 +23,15 @@ class Admin::UsersController < ApplicationController
     @user_comment = User.find(params[:id])
     @comments = @user_comment.comments.page(params[:page])
   end
+  
+  def withdraw
+    @user = current_user
+    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:alert] = "退会処理を実行いたしました"
+    redirect_to root_path
+  end
 
   def destroy
     post = Post.find(params[:id])

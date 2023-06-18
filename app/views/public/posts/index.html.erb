@@ -44,12 +44,13 @@
     </div>
   </div>
   <div class="row">
+    <h4>新着コメント（4件まで）</h4>
     <div class="col">
       <P><%= link_to "このテキストを評価する", post_path(post.id) %></P>
     </div>
   </div>
   <div class="row">
-    <% post.comments.each do |comment| %>
+    <% post.comments.last(4).each do |comment| %>
     <div class="col-3 mt-5">
     <p>投稿者名：<%= comment.user.name %></p>
     <p>コメント：<%= comment.comment_introduction %></p>

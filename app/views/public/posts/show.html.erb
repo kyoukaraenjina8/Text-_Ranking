@@ -23,7 +23,8 @@
     </div>
     <div class="col-4">
 
-          <%= '総合評価' %>
+          <%= 'みんなの総合評価' %>
+          <%= @post.comments.average(:total_score).to_f.round(1) %>
       <div id="post_raty_<%= @post.id %>" data-score="<%= @post.comments.average(:total_score).to_f.round(1) %>"></div>
       <script>
             // scriptファイルをどのidの部分に配置するかを指定
@@ -39,11 +40,62 @@
           }
       );
       </script>
+
+      <%= '読みやすさ' %>
+      <div id="read_score_raty_<%= @post.id %>" data-score="<%= @post.comments.average(:read_score).to_f.round(1) %>"></div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        raty(document.querySelector('#read_score_raty_<%= @post.id %>'),
+            {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: <%= @post.comments.average(:read_score).to_f.round(1) %>,
+              readOnly: true,
+              half: true,
+        //星画像の指定などのオプションをここに記述,
+            }
+        );
+      </script>
+
+      <%= '価格の妥当性' %>
+      <div id="price_score_raty_<%= @post.id %>" data-score="<%= @post.comments.average(:price_score).to_f.round(1) %>"></div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        raty(document.querySelector('#price_score_raty_<%= @post.id %>'),
+            {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: <%= @post.comments.average(:price_score).to_f.round(1) %>,
+              readOnly: true,
+              half: true,
+        //星画像の指定などのオプションをここに記述,
+            }
+        );
+      </script>
+
+      <%= '実用度' %>
+      <div id="usability_score_raty_<%= @post.id %>" data-score="<%= @post.comments.average(:usability_score).to_f.round(1) %>"></div>
+      <script>
+        // scriptファイルをどのidの部分に配置するかを指定
+        raty(document.querySelector('#usability_score_raty_<%= @post.id %>'),
+            {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: <%= @post.comments.average(:usability_score).to_f.round(1) %>,
+              readOnly: true,
+              half: true,
+        //星画像の指定などのオプションをここに記述,
+            }
+        );
+      </script>
   </div>
   </div>
   <h4>3件の新着コメント</h4>
   <div class="row">
-    <% @post.comments.last(3).each do |comment| %>
+    <% @post.comments.each do |comment| %>
     <div class="col-3">
     <p>投稿者名：<%= comment.user.name %></p>
     <p>コメント：<%= comment.comment_introduction %></p>
