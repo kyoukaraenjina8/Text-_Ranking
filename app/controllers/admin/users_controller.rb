@@ -36,14 +36,14 @@ class Admin::UsersController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.delete
-    redirect_to posts_path
+    redirect_to admin_users_path
   end
   
-  def destroy_comment
-    destroy_comment = Comment.find(params[:id])
-    destroy_comment.delete
-    redirect_to posts_path
-  end
+  # def destroy_comment
+  #   destroy_comment = Comment.find(params[:id])
+  #   destroy_comment.delete
+  #   redirect_to posts_path
+  # end
 
   private
 

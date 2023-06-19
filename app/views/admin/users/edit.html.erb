@@ -14,6 +14,12 @@
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
+        <div class="field">
+            <%= f.radio_button :is_deleted, false %>
+            <%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
+            <%= f.radio_button :is_deleted, true %>
+            <%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
+        </div>
     <%= f.submit '変更を保存' %>
     <% end %>
   </div>
