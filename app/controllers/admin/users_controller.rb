@@ -34,9 +34,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.delete
-    redirect_to admin_users_path
+    # post = Post.find(params[:id])
+    # post.delete
+    # redirect_to admin_users_path
   end
   
   # def destroy_comment

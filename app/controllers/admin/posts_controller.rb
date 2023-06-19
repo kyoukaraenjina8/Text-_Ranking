@@ -9,7 +9,7 @@ class Admin::PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-    post.delete
+    post.destroy
     redirect_to admin_users_path
   end
 

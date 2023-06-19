@@ -14,7 +14,8 @@ class Post < ApplicationRecord
   end
 
   def self.post_rank
-    @posts = Post.find(Comment.group(:total_score).order('avg(total_score) desc').limit(3).pluck(:post_id))
+    # @posts = Post.where(id: Comment.group(:total_score).order('avg(total_score) desc').limit(3).pluck(:post_id))
+    @posts = Post.joins(:comments).group(:post_id).order('avg(comments.total_score) desc').limit(3)
   end
 
 # 検索方法分岐
