@@ -93,7 +93,9 @@
       </script>
   </div>
   </div>
-  <h4>3件の新着コメント</h4>
+  <div class="row mt-5">
+      <h4>3件の新着コメント</h4>
+  </div>
   <div class="row">
     <% @post.comments.each do |comment| %>
     <div class="col-3">
@@ -165,8 +167,7 @@
       </script>
     </div>
     <% end %>
-        <div class="col-3">
-          <h4>テキストを評価する</h4>
+        <div class="col-3 offset-8">
       <%= form_with model: [@post, @post_comment] do |f| %>
       <%= f.label :"総合評価" %>
       <%= f.hidden_field :total_score, class: 'form-control' %>
