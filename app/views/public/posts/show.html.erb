@@ -1,6 +1,15 @@
 <div class= "container">
   <h1>Text：<%= @post.text_name %></h1>
 
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
   <div class="row mt-5">
     <div class="col-4">
     <%= link_to post_path(@post.id) do %>
@@ -168,6 +177,7 @@
     </div>
     <% end %>
         <div class="col-3 offset-8">
+          <p>コメントする</p>
       <%= form_with model: [@post, @post_comment] do |f| %>
       <%= f.label :"総合評価" %>
       <%= f.hidden_field :total_score, class: 'form-control' %>

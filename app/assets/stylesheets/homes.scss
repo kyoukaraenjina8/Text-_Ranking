@@ -1,7 +1,35 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-// .scroll{
-//   height: 80px;
-//   overflow: auto;
-// }
+.scroll{
+  height: 300px;
+  overflow: auto;
+}
+
+.balloon3-left {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 0 5px;
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  text-align: center;
+  color: #FFF;
+  font-size: 20px;
+  font-weight: bold;
+  background: #ffcc75;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.balloon3-left:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -25px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #ffcc75;
+  z-index: 0;
+}

@@ -4,36 +4,36 @@
 <div class= "container">
 
   <h1>Ranking</h1>
-
+  <p>〜ようこそText_Rankingへ〜</p>
   <% @posts.each.with_index(1) do |post, i| %>
-    <div class="row">
-      <div class="col text-center">
-        <strong><h1><%= "第#{i}位 #{post.ranking}" %></h1></strong>
-      </div>
+  <div class="row">
+    <div class="col text-center">
+      <strong><h1><%= "第#{i}位 #{post.ranking}" %></h1></strong>
     </div>
-    <div class="row mt-5">
-      <div class="col-4">
-        <%= link_to post_path(post.id) do %>
-          <%= image_tag post.get_image(150, 150) %>
-        <% end %>
-      </div>
-      <div class="col-4">
-        <%= '投稿者名' %>
-        <%= post.user.name %>さん
-        <%= '商品名' %>
-        <%= post.text_name %>
-        <%= '商品説明' %>
-        <%= post.introduction %>
-        <%= 'レビュー' %>
-        <%= post.review %>
-        <%= '価格' %>
-        <%= post.price %>
-      </div>
-  
-      <div class="col-4">
-        <h4><%= 'みんなの評価' %></h4></br>
-  
-        <%= '総合評価' %><%= post.comments.average(:total_score).to_f.round(1) %>
+  </div>
+  <div class="row mt-5">
+    <div class="col-4">
+      <%= link_to post_path(post.id) do %>
+        <%= image_tag post.get_image(150, 150) %>
+      <% end %>
+      <P><%= link_to "テキストの詳細をチェック", post_path(post.id) %></P>
+    </div>
+    <div class="col-4">
+      <%= '投稿者名' %>
+      <%= post.user.name %>さん
+      <%= '商品名' %>
+      <%= post.text_name %>
+      <%= '商品説明' %>
+      <%= post.introduction %>
+      <%= 'レビュー' %>
+      <%= post.review %>
+      <%= '価格' %>
+      <%= post.price %>
+    </div>
+
+    <div class="col-4">
+      <h4><%= 'みんなの評価' %></h4></br>
+      <%= '総合評価' %><%= post.comments.average(:total_score).to_f.round(1) %>
         <div id="post_raty_<%= post.id %>" data-score="<%= post.comments.average(:total_score).to_f.round(1) %>"></div>
         <script>
               // scriptファイルをどのidの部分に配置するかを指定
@@ -45,12 +45,11 @@
               score: <%= post.comments.average(:total_score).to_f.round(1) %>,
               readOnly: true,
               half: true,
-              // score: "#{comments.average(:total_score).to_f.round(1)}",
         //星画像の指定などのオプションをここに記述,
             }
         );
         </script>
-  
+
         <%= '読みやすさ' %>
         <div id="read_score_raty_<%= post.id %>" data-score="<%= post.comments.average(:read_score).to_f.round(1) %>"></div>
         <script>
@@ -67,7 +66,7 @@
               }
           );
         </script>
-  
+
         <%= '価格の妥当性' %>
         <div id="price_score_raty_<%= post.id %>" data-score="<%= post.comments.average(:price_score).to_f.round(1) %>"></div>
         <script>
@@ -84,7 +83,7 @@
               }
           );
         </script>
-  
+
         <%= '実用度' %>
         <div id="usability_score_raty_<%= post.id %>" data-score="<%= post.comments.average(:usability_score).to_f.round(1) %>"></div>
         <script>
@@ -101,22 +100,24 @@
               }
           );
         </script>
-      </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <P><%= link_to "このテキストを評価する", post_path(post.id) %></P>
-      </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h4>みんなのコメント</h4><%= link_to "（コメントの投稿はこちら）", post_path(post.id) %>
     </div>
-    <div class="row">
-      <% post.comments.each do |comment| %>
-      <div class="scroll col-3 mt-5">
+  </div>
+
+  <div class="row scroll">
+    <% post.comments.each do |comment| %>
+      <div class="col-3 mt-5">
       <p>投稿者名：<%= comment.user.name %></p>
       <p>コメント：<%= comment.comment_introduction %></p>
       <% if comment.user == current_user %>
           <%= link_to "削除", post_comment_path(post, comment.id), method: :delete %>
       <% end %>
-  
+
       <%= '総合評価' %>
       <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.total_score %>"></div>
         <script>
@@ -132,7 +133,7 @@
             }
         );
         </script>
-  
+
       <%= '読みやすさ' %>
       <div id="comment_read_score_raty_<%= comment.id %>" data-score="<%= comment.read_score %>"></div>
         <script>
@@ -148,7 +149,8 @@
             }
         );
         </script>
-              <%= '価格の妥当性' %>
+
+      <%= '価格の妥当性' %>
       <div id="comment_price_score_raty_<%= comment.id %>" data-score="<%= comment.price_score %>"></div>
         <script>
         raty(document.querySelector('#comment_price_score_raty_<%= comment.id %>'),
@@ -163,7 +165,8 @@
             }
         );
         </script>
-                      <%= '実用度' %>
+
+      <%= '実用度' %>
       <div id="comment_usability_score_raty_<%= comment.id %>" data-score="<%= comment.usability_score %>"></div>
         <script>
         raty(document.querySelector('#comment_usability_score_raty_<%= comment.id %>'),
@@ -179,7 +182,7 @@
         );
         </script>
       </div>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
   <% end %>
 </div>

@@ -5,8 +5,11 @@ class Public::CommentsController < ApplicationController
     comment = Comment.new(post_comment_params)
     comment.user_id = current_user.id
     comment.post_id = post_comment.id
-    comment.save
+    if comment.save
     redirect_to post_path(post_comment.id)
+    else
+    render template: "posts/show(post_comment.id)"
+    end
   end
   def index
     @comments = Comment.all
