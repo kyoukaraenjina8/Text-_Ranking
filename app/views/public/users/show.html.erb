@@ -16,22 +16,26 @@
           <td><%= current_user.email %></td>
         </tr>
       </table>
-      
+
             <strong>投稿一覧</strong>
       <% @user_post.each do |user_post| %>
 
   <div class="row mt-5">
-    <div class="col-3">
-      <p><%= link_to "この投稿削除する", post_path(user_post), method: :delete %></p>
+    <div class="col-2">
+      <%= link_to "編集", edit_post_path(user_post.id) %>
+      <%= link_to "削除", post_path(user_post), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
       <%= link_to post_path(user_post.id) do %>
         <%= image_tag user_post.get_image(150, 150) %>
       <% end %>
     </div>
-<div class="col-5">
+<div class="col-7">
   <table class='table table-bordered mt-2'>
       <tr>
-        <th><%= 'テキスト名' %></th>
-        <td>：<%= user_post.text_name %></td>
+        <th width="120"><%= 'テキスト名' %></th>
+        <td><%= link_to edit_post_path(user_post.id) do %>
+            ：<%= user_post.text_name %>
+            <% end %>
+        </td>
       </tr>
       <tr>
         <th><%= '価格' %></th>
@@ -39,14 +43,14 @@
       </tr>
       <tr>
         <th><%= '商品説明' %></th>
-        <td>：<%= truncate(user_post.introduction, length: 20) do %>
+        <td height="200"><%= truncate(user_post.introduction, length: 43) do %>
           (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）</td></tr>
           <% end %>
         </td>
       </tr>
       <tr>
         <th><%= 'レビュー' %></th>
-        <td>：<%= truncate(user_post.review, length: 20) do %>
+        <td height="200"><%= truncate(user_post.review, length: 43) do %>
           (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）</td></tr>
           <% end %>
         </td>
@@ -54,7 +58,7 @@
     </table>
 </div>
 
-    <div class="col-4">
+    <div class="col-3">
       <%= 'みんなの評価' %></br>
       <%= '総合評価' %><%= user_post.comments.average(:total_score).to_f.round(1) %>
       <div id="post_raty_<%= user_post.id %>" data-score="<%= user_post.comments.average(:total_score).to_f.round(1) %>"></div>
