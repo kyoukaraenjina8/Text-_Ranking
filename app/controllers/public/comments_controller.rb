@@ -7,6 +7,7 @@ class Public::CommentsController < ApplicationController
     comment.post_id = post_comment.id
     if comment.save
     redirect_to post_path(post_comment.id)
+    flash[:notice] = '新規コメントを作成しました。'
     else
     render template: "posts/show(post_comment.id)"
     end
@@ -17,7 +18,8 @@ class Public::CommentsController < ApplicationController
   
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to posts_path
+    flash[:notice] = 'コメントを削除しました。'
+    redirect_to request.referer
   end
   
   private

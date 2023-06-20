@@ -1,9 +1,9 @@
 class Post < ApplicationRecord
-  has_one_attached :image
-  #view画像を使うviewへ記述    <%= f.file_field :image, accept: "image/*" %>
-
+  
   has_many :comments, dependent: :destroy
   belongs_to :user
+  
+  has_one_attached :image
 
   def get_image(width, height)
       unless image.attached?
@@ -14,7 +14,7 @@ class Post < ApplicationRecord
   end
 
   def self.post_rank
-    # @posts = Post.where(id: Comment.group(:total_score).order('avg(total_score) desc').limit(3).pluck(:post_id))
+    #ランキング：commentsテーブルとの関連付けを行いpost_idでグループ化、コメントの平均値を降順で並び替え、うち三件を取得
     @posts = Post.joins(:comments).group(:post_id).order('avg(comments.total_score) desc').limit(3)
   end
 

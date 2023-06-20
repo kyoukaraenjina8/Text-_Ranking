@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  #before_action :authenticate_user!, except: [:top,:about]
+  #before_action :authenticate_admin!
 
+  
   private
   
   def after_sign_in_path_for(resource_or_scope)
@@ -12,7 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    #byebug
     if resource_or_scope == :user
         root_path
     elsif resource_or_scope == :admin
@@ -21,6 +23,7 @@ class ApplicationController < ActionController::Base
         root_path
     end
   end
+  
   protected
 
   def configure_permitted_parameters
