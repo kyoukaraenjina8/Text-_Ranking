@@ -12,7 +12,7 @@ class Public::UsersController < ApplicationController
   def update
     @user_edit = current_user
     if @user_edit.update(user_params)
-      flash[:notice] = 'ユーザー情報の編集成功しました。'
+      flash[:notice] = 'ユーザー情報の編集を成功しました。'
       redirect_to user_path
     else
       render 'edit'

@@ -13,15 +13,15 @@
     </tr>
     <tr>
       <th><%= f.label :"商品名" %></th>
-      <td><%= f.text_field :text_name %></td>
+      <td><%= f.text_field :text_name, size: "60x1" %></td>
     </tr>
     <tr>
       <th><%= f.label :"商品説明" %></th>
-      <td><%= f.text_area :introduction %></td>
+      <td><%= f.text_area :introduction, size: "60x3" %></td>
     </tr>
     <tr>
       <th><%= f.label :"レビュー" %></th>
-      <td><%= f.text_area :review %></td>
+      <td><%= f.text_area :review, size: "60x3" %></td>
     </tr>
     <tr>
       <th><%= f.label :"価格" %></th>
@@ -31,6 +31,9 @@
     </table>
     <%= f.submit '変更を保存' %>
     <% end %>
+  </div>
+  <div class="col-4 offset-8">
+    <%= link_to "削除", post_path(@post_edit), method: :delete, :class => "btn btn-danger ms-3", data: { confirm: "本当に投稿を削除しますか？" }  %>
   </div>
 </div>
 </div>

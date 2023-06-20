@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'public/posts' %>
 <div>
   <%= flash[:notice] %>
 </div>
@@ -14,26 +15,25 @@
   <% end %>
   
   <div class="row mt-5">
-    <div class="col-4">
-    <%= link_to post_path(@post.id) do %>
-      <%= image_tag @post.get_image(150, 150) %>
-    <% end %>
+    <div class="col-3">
+      <p>投稿者名：<%= @post.user.name %></p>
+      <%= link_to post_path(@post.id) do %>
+        <%= image_tag @post.get_image(150, 150) %>
+      <% end %>
       <div>
         <% if @post.user == current_user %>
-          <%= link_to "削除", post_path(@post), method: :delete %>
           <%= link_to "投稿編集", edit_post_path(@post) %>
         <% end %>
       </div>
     </div>
-    <div class="col-4">
-    <p>投稿者名：<%= @post.user.name %></p>
-    <p>商品名：<%= @post.text_name %></p>
-    <p>説明：<%= @post.introduction %></p>
-    <p>レビュー：<%= @post.review %></p>
-    <p>価格：<%= @post.price %></p>
-    <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+    <div class="box30 col-5">
+      <div class="box-title">商品名：<%= @post.text_name %></div>
+      <p>価格：<%= @post.price %></p>
+      <p>説明：<%= word_wrap(@post.introduction, line_width: 20) %></p>
+      <p>レビュー：<%= @post.review %></p>
+      <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
     </div>
-    <div class="col-4">
+    <div class="col">
 
           <%= 'みんなの総合評価' %>
           <%= @post.comments.average(:total_score).to_f.round(1) %>
@@ -106,148 +106,143 @@
   </div>
   </div>
   <div class="row mt-5">
-      <h4>3件の新着コメント</h4>
+      <h4>すべてのコメント</h4>
   </div>
-  <div class="row">
+  <div class="scroll row">
     <% @post.comments.each do |comment| %>
-    <div class="col-3">
-    <p>投稿者名：<%= comment.user.name %></p>
-    <p>コメント：<%= comment.comment_introduction %></p>
-    <p><% if comment.user == current_user %>
-        <%= link_to "削除", post_comment_path(@post, comment.id), method: :delete %>
-    <% end %>
-    </p>
-    <%= '総合評価' %>
-    <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.total_score %>"></div>
-      <script>
-      raty(document.querySelector('#comment_raty_<%= comment.id %>'),
-          {
+      <div class="col-3">
+        <p>投稿者名：<%= comment.user.name %></p>
+        <p>コメント：<%= comment.comment_introduction %></p>
+        <p>
+          <% if comment.user == current_user %>
+            <%= link_to "削除", post_comment_path(@post, comment.id), method: :delete %>
+          <% end %>
+        </p>
+        <%= '総合評価' %>
+        <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.total_score %>"></div>
+        <script>
+          raty(document.querySelector('#comment_raty_<%= comment.id %>'), {
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
             starHalf: "<%= asset_path('star-half.png') %>",
             score: <%= comment.total_score %>,
             readOnly: true,
-            half: true,
-          }
-      );
-      </script>
-
-    <%= '読みやすさ' %>
-    <div id="comment_read_score_raty_<%= comment.id %>" data-score="<%= comment.read_score %>"></div>
-      <script>
-      raty(document.querySelector('#comment_read_score_raty_<%= comment.id %>'),
-          {
+            half: true
+          });
+        </script>
+  
+        <%= '読みやすさ' %>
+        <div id="comment_read_score_raty_<%= comment.id %>" data-score="<%= comment.read_score %>"></div>
+        <script>
+          raty(document.querySelector('#comment_read_score_raty_<%= comment.id %>'), {
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
             starHalf: "<%= asset_path('star-half.png') %>",
             score: <%= comment.read_score %>,
             readOnly: true,
-            half: true,
-      //星画像の指定などのオプションをここに記述,
-          }
-      );
-      </script>
-            <%= '価格の妥当性' %>
-    <div id="comment_price_score_raty_<%= comment.id %>" data-score="<%= comment.price_score %>"></div>
-      <script>
-      raty(document.querySelector('#comment_price_score_raty_<%= comment.id %>'),
-          {
+            half: true
+          });
+        </script>
+  
+        <%= '価格の妥当性' %>
+        <div id="comment_price_score_raty_<%= comment.id %>" data-score="<%= comment.price_score %>"></div>
+        <script>
+          raty(document.querySelector('#comment_price_score_raty_<%= comment.id %>'), {
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
             starHalf: "<%= asset_path('star-half.png') %>",
             score: <%= comment.price_score %>,
             readOnly: true,
-            half: true,
-      //星画像の指定などのオプションをここに記述,
-          }
-      );
-      </script>
-                    <%= '実用度' %>
-    <div id="comment_usability_score_raty_<%= comment.id %>" data-score="<%= comment.usability_score %>"></div>
-      <script>
-      raty(document.querySelector('#comment_usability_score_raty_<%= comment.id %>'),
-          {
+            half: true
+          });
+        </script>
+  
+        <%= '実用度' %>
+        <div id="comment_usability_score_raty_<%= comment.id %>" data-score="<%= comment.usability_score %>"></div>
+        <script>
+          raty(document.querySelector('#comment_usability_score_raty_<%= comment.id %>'), {
             starOn: "<%= asset_path('star-on.png') %>",
             starOff: "<%= asset_path('star-off.png') %>",
             starHalf: "<%= asset_path('star-half.png') %>",
             score: <%= comment.usability_score %>,
             readOnly: true,
-            half: true,
-      //星画像の指定などのオプションをここに記述,
-          }
-      );
-      </script>
-    </div>
+            half: true
+          });
+        </script>
+      </div>
     <% end %>
-        <div class="col-3 offset-8">
-          <p>コメントする</p>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-3 offset-3">
+    <h4>コメントする</h4>
       <%= form_with model: [@post, @post_comment] do |f| %>
-      <%= f.label :"総合評価" %>
-      <%= f.hidden_field :total_score, class: 'form-control' %>
-              <div id="total_post_raty"></div>
-            <script>
-            var total_score_raty_elem = document.querySelector('#total_post_raty');
-            var total_score_raty_opt = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              scoreName: 'comment[total_score]',
-              half: true,
-              //星画像の指定などのオプションをここに記述,
-             };
-            raty(total_score_raty_elem, total_score_raty_opt);
-            </script>
-
-      <%= '読みやすさ' %>
+      <%= f.text_area :comment_introduction, rows: '5', placeholder: "コメントをここに" %>
+      <%= f.submit "送信する" %>
+    </div>
+    
+    <div class="col-3">
+        <%= f.label :"総合評価" %>
+        <%= f.hidden_field :total_score, class: 'form-control' %>
+        <div id="total_post_raty"></div>
+        <script>
+          var total_score_raty_elem = document.querySelector('#total_post_raty');
+          var total_score_raty_opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'comment[total_score]',
+            half: true,
+            //星画像の指定などのオプションをここに記述,
+          };
+          raty(total_score_raty_elem, total_score_raty_opt);
+        </script>
+  
+        <%= '読みやすさ' %>
         <%= f.hidden_field :read_score, class: 'form-control' %>
-      <div id="read_score_raty"></div>
-          <script>
-            // scriptファイルをどのidの部分に配置するかを指定
-            var read_score_raty_elem = document.querySelector('#read_score_raty');
-            var  read_score_raty_opt = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              scoreName: 'comment[read_score]',
-              half: true,
-             };
-            raty(read_score_raty_elem, read_score_raty_opt);
-          </script>
-
-      <%= '価格の妥当性' %>
+        <div id="read_score_raty"></div>
+        <script>
+          var read_score_raty_elem = document.querySelector('#read_score_raty');
+          var read_score_raty_opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'comment[read_score]',
+            half: true,
+          };
+          raty(read_score_raty_elem, read_score_raty_opt);
+        </script>
+  
+        <%= '価格の妥当性' %>
         <%= f.hidden_field :price_score, class: 'form-control' %>
-      <div id="price_score_raty"></div>
-          <script>
-            // scriptファイルをどのidの部分に配置するかを指定
-            var  price_score_raty_elem = document.querySelector('#price_score_raty');
-            var  price_score_raty_opt = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              scoreName: 'comment[price_score]',
-              half: true,
-             };
-            raty(price_score_raty_elem, price_score_raty_opt);
-          </script>
-
-      <%= '実用度' %>
+        <div id="price_score_raty"></div>
+        <script>
+          var price_score_raty_elem = document.querySelector('#price_score_raty');
+          var price_score_raty_opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'comment[price_score]',
+            half: true,
+          };
+          raty(price_score_raty_elem, price_score_raty_opt);
+        </script>
+  
+        <%= '実用度' %>
         <%= f.hidden_field :usability_score, class: 'form-control' %>
-      <div id="usability_score_raty"></div>
-          <script>
-            // scriptファイルをどのidの部分に配置するかを指定
-            var  usability_score_raty_elem = document.querySelector('#usability_score_raty');
-            var  usability_score_raty_opt = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              scoreName: 'comment[usability_score]',
-              half: true,
-             };
-            raty(usability_score_raty_elem, usability_score_raty_opt);
-          </script>
-        <%= f.text_area :comment_introduction, rows: '5', placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
-      <% end %>
+        <div id="usability_score_raty"></div>
+        <script>
+          var usability_score_raty_elem = document.querySelector('#usability_score_raty');
+          var usability_score_raty_opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'comment[usability_score]',
+            half: true,
+          };
+          raty(usability_score_raty_elem, usability_score_raty_opt);
+        </script>
     </div>
   </div>
+    <% end %>
 </div>

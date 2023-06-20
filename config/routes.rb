@@ -28,7 +28,7 @@ scope module: :public do
   resources :users, only: [:show,:edit,:update]
   resource :posts, only: [:new,:create]
   resources :posts, only: [:show,:index,:destroy,:edit,:update] do
-    resources :comments, only: [:create,:destroy]
+    resources :comments, only: [:create,:destroy,:new]
   end
 end
 
