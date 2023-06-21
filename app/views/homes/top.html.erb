@@ -2,36 +2,50 @@
 <%= stylesheet_link_tag 'homes' %>
 <%= flash[:notice] %>
 <div class= "container">
-
-  <h1>Ranking</h1>
-  <p>〜ようこそText_Rankingへ〜</p>
-  <% @posts.each.with_index(1) do |post, i| %>
   <div class="row">
+    <%= image_tag 'pexels-shvets-production-6974921.jpg', size: '1400x700'%>
+  </div>
+  <div class="row">
+
+  </div>
+
+    <div class="col">
+    <p>〜Text番付へようこそ〜</p>
+    
+    <p>テキスト通りにやったのになんででけへんねん！！</p>
+    <p>
+    <p>プログラミング初学者の方は一度は経験したことかと思います。
+    <p>学習を進めていくとテキストを丸写ししたからできるなんてそんなことではないな。</p>
+    <p>と、気づいていくものですが。</p>
+    
+    <p>でも、やっぱりそういう初学者の方へ寄り添いたい、最初のテキストはわかりやすいものを手に取って欲しい。</p>
+    <p>そんな想いで初学者向けのテキストを使用者の皆さんの評価順にランキングにしました。</p>
+    
+    <p>だから優しいピンクとベージュのカラーリングなわけです。ちょっとでも心が軽くなるように。</p>
+  </div>
+  <div class="row mt-5">
+    <h1>Ranking</h1>
+    <% @posts.each.with_index(1) do |post, i| %>
     <div class="col text-center">
       <strong><h1><%= "第#{i}位 #{post.ranking}" %></h1></strong>
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col-4">
+    <div class="col-3">
+      <p>投稿者名：<%= post.user.name %>さん</p>
       <%= link_to post_path(post.id) do %>
         <%= image_tag post.get_image(150, 150) %>
       <% end %>
       <P><%= link_to "テキストの詳細をチェック", post_path(post.id) %></P>
     </div>
-    <div class="col-4">
-      <%= '投稿者名' %>
-      <%= post.user.name %>さん
-      <%= '商品名' %>
-      <%= post.text_name %>
-      <%= '商品説明' %>
-      <%= post.introduction %>
-      <%= 'レビュー' %>
-      <%= post.review %>
-      <%= '価格' %>
-      <%= post.price %>
+   <div class="col-6">
+      <div class="box-title"> <%= post.text_name %></div>
+      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円</p>
+      <p>商品説明：<%= word_wrap(post.introduction, line_width: 30) %></p>
+      <p>レビュー：<%= word_wrap(post.review, line_width: 30) %></p>
     </div>
 
-    <div class="col-4">
+    <div class="col-3 text-center">
       <h4><%= 'みんなの評価' %></h4></br>
       <%= '総合評価' %><%= post.comments.average(:total_score).to_f.round(1) %>
         <div id="post_raty_<%= post.id %>" data-score="<%= post.comments.average(:total_score).to_f.round(1) %>"></div>
@@ -104,8 +118,8 @@
   </div>
 
   <div class="row">
-    <div class="col">
-      <h4>みんなのコメント</h4><%= link_to "（コメントの投稿はこちら）", post_path(post.id) %>
+    <div class="col mt-5">
+      <h4>すべてのコメント</h4><%= link_to "（コメントの投稿はこちら）", post_path(post.id) %>
     </div>
   </div>
 

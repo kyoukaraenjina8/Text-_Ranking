@@ -11,15 +11,16 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
+        
           <li><strong>〜ようこそ、<%= current_user.name %>さん〜</strong></li>
+          <% if current_user.email != "guest@example.com" %>
           <li>
             <%= link_to 'テキスト投稿', new_posts_path, class:'nav-link text-light btn-sm btn-dark ml-4' %>
           </li>
           <li>
-            <% if user.email != "guest@example.com" %>
             <%= link_to 'マイページ', user_path(current_user) , class:'nav-link text-light btn-sm btn-dark ml-1' %>
-            <% end %>
           </li>
+          <% end %>
           <li>
             <%= link_to 'ランキング', root_path, class:'nav-link text-light btn-sm btn-dark ml-1' %>
           </li>
