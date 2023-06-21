@@ -1,10 +1,10 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:new]
-  
+
   def new
     @comment = Comment.new
-  end 
-  
+  end
+
   def create
     post_comment = Post.find(params[:post_id])
     comment = Comment.new(post_comment_params)
@@ -20,17 +20,17 @@ class Public::CommentsController < ApplicationController
   # def index
   #   @comments = Comment.all
   # end
-  
+
   def destroy
     Comment.find(params[:id]).destroy
     flash[:notice] = 'コメントを削除しました。'
     redirect_to request.referer
   end
-  
+
   private
 
   def post_comment_params
     params.require(:comment).permit(:comment_introduction, :total_score, :read_score, :price_score, :usability_score)
   end
-  
+
 end

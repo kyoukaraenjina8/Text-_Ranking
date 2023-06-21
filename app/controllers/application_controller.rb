@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_parameters, if: :devise_controler?
-  #before_action :authenticate_admin!
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
 
   private
