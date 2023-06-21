@@ -9,26 +9,24 @@
 <% @posts.each do |post| %>
 
   <div class="row mt-5">
-    <div class="col-4">
-      <%= link_to post_path(post.id) do %>
-        <%= image_tag post.get_image(150, 150) %>
-      <% end %>
+    <div class="col-3">
+      <p>投稿者名：<%= post.user.name %>さん</p>
+      <p><%= image_tag post.get_image(150, 150) %></p>
     </div>
-    <div class="col-4">
-      <%= '投稿者名' %>
-      <%= post.user.name %>さん
-      <%= '商品名' %>
+    <div class="col-5">
+      <%= link_to post_path(post.id) do %>
       <%= post.text_name %>
-      <%= '商品説明' %>
-      <%= post.introduction %>
-      <%= 'レビュー' %>
-      <%= post.review %>
-      <%= '価格' %>
-      <%= post.price %>
+      <% end %>
+      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円</p>
+      <p>
+        商品説明：<%= truncate(post.introduction, length: 90) do %>
+            (続きは<%= link_to '詳細', post_path(post) %>をクリック。）
+            <% end %>
+      </p>
     </div>
 
     <div class="col-4">
-      <%= 'みんなの評価' %>
+      <%= 'みんなの評価' %><%= post.comments.average(:total_score).to_f.round(1) %>
       <div id="post_raty_<%= post.id %>" data-score="<%= post.comments.average(:total_score).to_f.round(1) %>"></div>
       <script>
             // scriptファイルをどのidの部分に配置するかを指定

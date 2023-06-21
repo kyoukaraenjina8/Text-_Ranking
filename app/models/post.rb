@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
-  
+
   has_many :comments, dependent: :destroy
   belongs_to :user
-  
+
   has_one_attached :image
 
   def get_image(width, height)
@@ -32,11 +32,11 @@ class Post < ApplicationRecord
       @post = Post.all
     end
   end
-  
+
   validates :image, presence: true
   validates :text_name, presence: true
-  validates :introduction, presence: true
-  validates :review, presence: true
+  validates :introduction, presence: true, length: {maximum: 150}
+  validates :review, presence: true, length: {maximum: 150}
   validates :price, presence: true
   validates :total_score, presence: true
   validates :read_score, presence: true

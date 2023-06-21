@@ -43,14 +43,14 @@
       </tr>
       <tr>
         <th><%= '商品説明' %></th>
-        <td height="200"><%= truncate(user_post.introduction, length: 43) do %>
+        <td height="120"><%= truncate(user_post.introduction, length: 82) do %>
           (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）</td></tr>
           <% end %>
         </td>
       </tr>
       <tr>
         <th><%= 'レビュー' %></th>
-        <td height="200"><%= truncate(user_post.review, length: 43) do %>
+        <td height="120"><%= truncate(user_post.review, length: 82) do %>
           (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）</td></tr>
           <% end %>
         </td>

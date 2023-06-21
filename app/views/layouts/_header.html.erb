@@ -16,7 +16,9 @@
             <%= link_to 'テキスト投稿', new_posts_path, class:'nav-link text-light btn-sm btn-dark ml-4' %>
           </li>
           <li>
+            <% if user.email != "guest@example.com" %>
             <%= link_to 'マイページ', user_path(current_user) , class:'nav-link text-light btn-sm btn-dark ml-1' %>
+            <% end %>
           </li>
           <li>
             <%= link_to 'ランキング', root_path, class:'nav-link text-light btn-sm btn-dark ml-1' %>
