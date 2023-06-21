@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
-  before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_guest_user, only: [:edit,:show]
+  before_action :authenticate_user!, except: [:new,:index]
 
   def new
     @post = Post.new
@@ -47,6 +48,13 @@ class Public::PostsController < ApplicationController
   end
 
 private
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end  
 
   def post_params
     params.require(:post).permit(:image,:text_name, :introduction, :review, :price, :total_score, :read_score, :price_score, :usability_score)

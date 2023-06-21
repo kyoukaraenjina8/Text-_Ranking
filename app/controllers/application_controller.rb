@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  #before_action :authenticate_user!, except: [:top,:about]
+  before_action :configure_permitted_parameters, if: :devise_controler?
   #before_action :authenticate_admin!
-  #before_action :ensure_guest_user, only: [:edit,:new]
-  
+
+
   private
 
   def after_sign_in_path_for(resource_or_scope)
@@ -23,7 +22,7 @@ class ApplicationController < ActionController::Base
         root_path
     end
   end
-  
+
   protected
 
   def configure_permitted_parameters

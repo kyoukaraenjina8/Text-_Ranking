@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_user!, except: [:new]
+  
   def new
     @comment = Comment.new
   end 
@@ -15,9 +17,9 @@ class Public::CommentsController < ApplicationController
     render template: "posts/show(post_comment.id)"
     end
   end
-  def index
-    @comments = Comment.all
-  end
+  # def index
+  #   @comments = Comment.all
+  # end
   
   def destroy
     Comment.find(params[:id]).destroy

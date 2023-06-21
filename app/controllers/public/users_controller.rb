@@ -1,10 +1,14 @@
 class Public::UsersController < ApplicationController
-  before_action :is_matching_login_user, only: [:edit, :update, :withdraw]
+  before_action :is_matching_login_user, only: [ :show,:edit,:confirm_withdraw]
+  before_action :ensure_guest_user, only: [:show,:edit,:confirm_withdraw]
+  before_action :authenticate_user!
+
   
   def show
     @user =User.find(params[:id])
     @user_post = @user.posts
   end
+  
   def edit
     @user_edit = current_user
   end
@@ -43,7 +47,7 @@ class Public::UsersController < ApplicationController
   def is_matching_login_user
     user = User.find(params[:id])
   unless user.id == current_user.id
-    redirect_to post_images_path
+    redirect_to root_path
   end
   end
   
