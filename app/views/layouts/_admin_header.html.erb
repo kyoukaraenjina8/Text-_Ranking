@@ -13,20 +13,20 @@
         <% if admin_signed_in? %>
           <li><strong>〜管理者ログイン中〜</strong></li>
           <li>
-            <%= link_to 'ユーザーリスト', admin_users_path, class:'nav-link text-light btn btn-dark ml-5' %>
+            <%= link_to 'ユーザーリスト', admin_users_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <li>
-            <%= link_to 'text一覧', admin_posts_path, class:'nav-link text-light btn btn-dark ml-2' %>
+            <%= link_to 'text一覧', admin_posts_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <li>
-            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:'nav-link text-light btn btn-dark ml-2' %>
+            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
         <% else %>
           <li>
             <strong>〜管理者ログイン画面〜</strong>
           </li>
           <li>
-            <%= link_to 'ユーザーログイン', new_user_session_path, class:'nav-link text-light btn btn-dark ml-2' %>
+            <%= link_to 'ユーザーログイン', new_user_session_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
         <% end %>
         </ul>

@@ -1,14 +1,10 @@
 <%= stylesheet_link_tag '_footer' %>
 <%= stylesheet_link_tag 'homes' %>
 <div class= "container">
-  <div class="row">
     <%= flash[:notice] %>
-    <%= image_tag 'pexels-shvets-production-6974921.jpg', size: '1400x700'%>
-    <%= "テキスト通りにやったんですけどネ💢" %>
-  </div>
   <div class="row">
+    <%= image_tag 'pexels-shvets-production-6974921.jpg', size: '1400x700'%>
 
-  </div>
 
     <div class="col-10 offset-2">
     <p>〜Text番付へようこそ〜</p>
@@ -23,7 +19,9 @@
     <p>そんな想いで初学者向けのテキストを使用者の皆さんの評価順にランキングにしました。</p>
     
     <p>だから優しいピンクとベージュのカラーリングなわけです。ちょっとでも心が軽くなるように。</p>
+    </div>
   </div>
+
   <div class="row mt-5">
     <h1>Ranking</h1>
     <% @posts.each.with_index(1) do |post, i| %>

@@ -11,34 +11,33 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
-        
           <li><strong>〜ようこそ、<%= current_user.name %>さん〜</strong></li>
           <% if current_user.email != "guest@example.com" %>
           <li>
-            <%= link_to 'テキスト投稿', new_posts_path, class:'nav-link text-light btn-sm btn-dark ml-4' %>
+            <%= link_to 'テキスト投稿', new_posts_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <li>
-            <%= link_to 'マイページ', user_path(current_user) , class:'nav-link text-light btn-sm btn-dark ml-1' %>
+            <%= link_to 'マイページ', user_path(current_user) , class:'sm nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <% end %>
           <li>
-            <%= link_to 'ランキング', root_path, class:'nav-link text-light btn-sm btn-dark ml-1' %>
+            <%= link_to 'ランキング', root_path, class:'sm nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <li>
-            <%= link_to 'text一覧', posts_path, class:'nav-link text-light btn-sm btn-dark ml-1' %>
+            <%= link_to 'text一覧', posts_path, class:'sm nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <li>
-            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:'nav-link text-light btn-sm btn-dark ml-1' %>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:'sm ml-1 nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
         <% else %>
           <li>
-            <%= link_to 'ランキング', root_path, class:'nav-link text-light btn btn-dark ml-2' %>
+            <%= link_to 'ランキング', root_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <li>
-            <%=  link_to '新規登録', new_user_registration_path, class:'nav-link text-light btn btn-dark ml-2' %>
+            <%=  link_to '新規登録', new_user_registration_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <li>
-            <%= link_to 'ログイン', new_user_session_path, class:'nav-link text-light btn btn-dark ml-2' %>
+            <%= link_to 'ログイン', new_user_session_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
         <% end %>
         </ul>
@@ -48,7 +47,7 @@
     <%= form_with url: searches_search_path, local: true, method: :get do |f| %>
       <%= f.text_field :word, placeholder: "Textの名前で検索" %>
       <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
+      <%= f.submit "検索", class: "btn btn-dark" %>
     <% end %>
   </div>
    <% end %>
