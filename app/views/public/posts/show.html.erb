@@ -24,11 +24,12 @@
         <% end %>
       </div>
     </div>
-    <div class="col-6">
-      <p><h3><%= @post.text_name %></h3></p>
-      <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= @post.price %>円</p>
-      <p>商品説明：<%= word_wrap(@post.introduction, line_width: 30) %></p>
-      <p>レビュー：<%= word_wrap(@post.review, line_width: 30) %></p>
+    
+    <div class="box col-6">
+      <p><%= @post.text_name %></p>
+      <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= @post.price %>円</p></br>
+      <p>商品説明：<%= @post.introduction %></p></br>
+      <p>投稿者レビュー：<%= @post.review %></p>
     </div>
 
     <div class="col-3 text-center pt-3">

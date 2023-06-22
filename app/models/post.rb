@@ -35,8 +35,8 @@ class Post < ApplicationRecord
 
   validates :image, presence: true
   validates :text_name, presence: true
-  validates :introduction, presence: true, length: {maximum: 150}
-  validates :review, presence: true, length: {maximum: 150}
+  validates :introduction, presence: true, length: {maximum: 300}
+  validates :review, presence: true, length: {maximum: 300}
   validates :price, presence: true
   validates :total_score, presence: true
   validates :read_score, presence: true

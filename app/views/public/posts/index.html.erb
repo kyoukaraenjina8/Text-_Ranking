@@ -12,7 +12,7 @@
       <p>投稿者名：<%= post.user.name %>さん</p>
       <p><%= image_tag post.get_image(170, 170) %></p>
     </div>
-    <div class="col-6">
+    <div class="box col-6">
       <%= link_to post_path(post.id) do %>
       <%= post.text_name %>
       <% end %>

@@ -1,18 +1,10 @@
-<div class="main-visual">
-  
-      <div class="main-visual-content">
-
-        <p class="main-visual-text">
-          The world is a book and those who do not travel read only one page.
-        </p>
-        <p class="main-visual-name">
-          St. Augustine<div class="container p-5">
+<div class="container p-5">
   <div class="row">
     <div class="col text-center">
-      <h1>テキストのレビューを投稿する</h1>
+      <h1>テキストを投稿する</h1>
     </div>
   </div>
-  
+
   <% if @post.errors.any? %>
     <%= @post.errors.count %>件のエラーが発生しました
     <ul>
@@ -21,7 +13,7 @@
       <% end %>
     </ul>
   <% end %>
-  
+
   <div class="row mt-2">
     <div class="col-8 mx-auto text-center">
       <%= form_with model: @post do |f| %>
@@ -36,11 +28,11 @@
       </tr>
       <tr>
         <th><%= f.label :"商品説明" %></th>
-        <td><%= f.text_area :introduction, size: "60x3", placeholder: "入力は150文字まで" %></td>
+        <td><%= f.text_area :introduction, size: "60x3", placeholder: "入力は300文字まで" %></td>
       </tr>
       <tr>
         <th><%= f.label :"レビュー" %></th>
-        <td><%= f.text_area :review, size: "60x3", placeholder: "入力は150文字まで" %></td>
+        <td><%= f.text_area :review, size: "60x3", placeholder: "入力は300文字まで" %></td>
       </tr>
       <tr>
         <th><%= f.label :"価格" %></th>
@@ -52,5 +44,3 @@
     </div>
 </div>
 </div>
-        </p>      </div>
-    </div>

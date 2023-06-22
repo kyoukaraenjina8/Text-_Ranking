@@ -6,6 +6,36 @@
   overflow: auto;
 }
 
-.first-place {
-  color: red;
+.first-place, .second-place, .third-place {
+    font-size:18px;
+    margin: 0;
+    padding: 51px 0px 51px 195px;
+    border-left: none;
+    border-bottom: 0px;
+    background-size: 75px;
 }
+
+.first-place {
+    background-image: asset-url('f2-1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.second-place {
+    background-image: asset-url('f2-2.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.third-place {
+    background-image: asset-url('f2-3.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.main-image {
+  width: 100%; /* 横幅いっぱい */
+  height: 700px; /* 高さ300px */
+  background-image: asset-url('angry.jpg');
+  background-size: contain;
+}
+

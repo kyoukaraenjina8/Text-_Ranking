@@ -16,3 +16,15 @@
  main {
     background-color: #FFF5EE;
 }
+
+.box{
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    background: #f4f4f4;
+    border-left: solid 6px #cc9999;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.33);
+}
+.box p {
+    margin: 0; 
+    padding: 0;
+}

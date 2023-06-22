@@ -2,22 +2,28 @@
 <%= stylesheet_link_tag 'homes' %>
 <div class= "container">
     <%= flash[:notice] %>
+  <div class="main-image row">
+    <p class="firstStr col">
+      テキスト通りに<br>
+      やったんですけどネ💢
+    </p>
+  </div>
   <div class="row">
-    <%= image_tag 'pexels-shvets-production-6974921.jpg', size: '1400x700'%>
+    <%#= image_tag 'pexels-shvets-production-6974921.jpg', size: '1400x700'%>
 
 
     <div class="col-10 offset-2">
     <p>〜Text番付へようこそ〜</p>
-    
+
     <p>テキスト通りにやったのになんででけへんねん！！</p>
     <p>
     <p>プログラミング初学者の方は一度は経験したことかと思います。
     <p>学習を進めていくと、テキストを丸写ししたからできるなんてそんな甘いものではないな。</p>
     <p>と、気づいていくものですが。</p>
-    
+
     <p>そういう初学者の方へ寄り添いたい、最初のテキストはわかりやすいものを手に取って欲しい。</p>
     <p>そんな想いで初学者向けのテキストを使用者の皆さんの評価順にランキングにしました。</p>
-    
+
     <p>だから優しいピンクとベージュのカラーリングなわけです。ちょっとでも心が軽くなるように。</p>
     </div>
   </div>
@@ -27,11 +33,11 @@
     <div class="row mt-5">
     <div class="col text-center">
       <% if i == 1 %>
-        <strong><h1 class="first-place"><%= "第#{i}位 #{post.ranking}" %></h1></strong>
+        <div class="first-place"></div>
       <% elsif i == 2 %>
-        <strong><h1 class="second-place"><%= "第#{i}位 #{post.ranking}" %></h1></strong>
+        <div class="second-place"></div>
       <% else %>
-        <strong><h1 class="third-place"><%= "第#{i}位 #{post.ranking}" %></h1></strong>
+        <div class="third-place"></div>
       <% end %>
     </div>
   </div>
@@ -43,11 +49,19 @@
       <% end %>
       <P><%= link_to "テキストの詳細をチェック", post_path(post.id) %></P>
     </div>
-   <div class="col-6">
-      <div class="box-title"> <%= post.text_name %></div>
-      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円</p>
-      <p>商品説明：<%= word_wrap(post.introduction, line_width: 30) %></p>
-      <p>レビュー：<%= word_wrap(post.review, line_width: 30) %></p>
+    <div class="box col-6">
+      <p><%= post.text_name %></p>
+      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円</p></br>
+      <p>
+        商品説明：<%= truncate(post.introduction, length: 120) do %>
+            (続きは<%= link_to '詳細', post_path(post) %>をクリック。）
+            <% end %>
+      </p></br>
+      <p>
+        投稿者レビュー：<%= truncate(post.review, length: 100) do %>
+            (続きは<%= link_to '詳細', post_path(post) %>をクリック。）
+            <% end %>
+      </p>
     </div>
 
     <div class="col-3 text-center">
