@@ -3,9 +3,9 @@
   <%= flash[:notice] %>
 </div>
 <div class= "container">
-  <h1>Text詳細</h1>
 
-  <% if @post.errors.any? %>
+  <div class="row pt-5">
+      <% if @post.errors.any? %>
     <%= @post.errors.count %>件のエラーが発生しました
     <ul>
       <% @post.errors.full_messages.each do |message| %>
@@ -13,12 +13,10 @@
       <% end %>
     </ul>
   <% end %>
-
-  <div class="row mt-5">
     <div class="col-3">
       <p>投稿者名：<%= @post.user.name %>さん</p>
       <%= link_to post_path(@post.id) do %>
-        <%= image_tag @post.get_image(150, 150) %>
+        <%= image_tag @post.get_image(170, 170) %>
       <% end %>
       <div>
         <% if @post.user == current_user %>
@@ -26,14 +24,14 @@
         <% end %>
       </div>
     </div>
-    <div class="col-5">
-      <div class="box-title"> <%= @post.text_name %></div>
+    <div class="col-6">
+      <p><h3><%= @post.text_name %></h3></p>
       <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= @post.price %>円</p>
       <p>商品説明：<%= word_wrap(@post.introduction, line_width: 30) %></p>
       <p>レビュー：<%= word_wrap(@post.review, line_width: 30) %></p>
     </div>
-    
-    <div class="col pl-5">
+
+    <div class="col-3 text-center pt-3">
 
           <%= 'みんなの総合評価' %>
           <%= @post.comments.average(:total_score).to_f.round(1) %>
