@@ -33,7 +33,7 @@ scope module: :public do
 end
 
 namespace :admin do
-  resources :posts, only: [:index,:destroy]
+  resources :posts, only: [:index,:destroy,:show]
     resources :comments, only: [:destroy]
   resources :users, only: [:index,:edit,:update,:destroy]
   patch '/users/withdraw' => 'users#withdraw'

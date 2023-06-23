@@ -17,30 +17,30 @@
   <div class="row mt-2">
     <div class="col-8 mx-auto text-center">
       <%= form_with model: @post do |f| %>
-      <table class='table'>
-      <tr>
-        <th><%= f.label :"商品画像" %></th>
-        <td><%= f.file_field :image, accept: "image/*" %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :"商品名" %></th>
-        <td><%= f.text_field :text_name, size: "60x1" %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :"商品説明" %></th>
-        <td><%= f.text_area :introduction, size: "60x3", placeholder: "入力は300文字まで" %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :"レビュー" %></th>
-        <td><%= f.text_area :review, size: "60x3", placeholder: "入力は300文字まで" %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :"価格" %></th>
-        <td><%= f.text_field :price %></td>
-      </tr>
-  </table>
-      <%= f.submit '投稿' %>
-    <% end %>
+        <table class='table'>
+          <tr>
+            <th><%= f.label :"商品画像" %></th>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :"商品名" %></th>
+            <td><%= f.text_field :text_name, size: "60x1" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :"商品説明" %></th>
+            <td><%= f.text_area :introduction, size: "60x3", placeholder: "入力は300文字まで" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :"レビュー" %></th>
+            <td><%= f.text_area :review, size: "60x3", placeholder: "入力は300文字まで" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :"価格" %></th>
+            <td><%= f.text_field :price %></td>
+          </tr>
+        </table>
+        <%= f.submit '投稿' %>
+      <% end %>
     </div>
-</div>
+  </div>
 </div>

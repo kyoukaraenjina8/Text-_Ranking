@@ -16,7 +16,7 @@
         <% @posts.each do |post| %>
           <tr>
             <td>
-              <%= link_to root_path do %>
+              <%= link_to admin_post_path(post.id) do %>
                 <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>
               <% end %>
             </td>

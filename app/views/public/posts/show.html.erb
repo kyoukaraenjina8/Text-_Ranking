@@ -13,11 +13,10 @@
       <% end %>
     </ul>
   <% end %>
+
     <div class="col-3">
       <p>投稿者名：<%= @post.user.name %>さん</p>
-      <%= link_to post_path(@post.id) do %>
         <%= image_tag @post.get_image(250, 250) %>
-      <% end %>
       <div>
         <% if @post.user == current_user %>
           <%= link_to "投稿編集", edit_post_path(@post) %>
@@ -26,7 +25,7 @@
     </div>
     
     <div class="box col-6">
-      <p><%= @post.text_name %></p>
+      <div class="post-title"><%= @post.text_name %>の詳細ページ</div>
       <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= @post.price %>円</p></br>
       <p>商品説明：<%= @post.introduction %></p></br>
       <p>投稿者レビュー：<%= @post.review %></p>
@@ -172,25 +171,31 @@
     <% end %>
   </div>
 
-  <div class="row mt-5">
-<div class="col">
-          <p>コメントする</p>
-      <%= form_with model: [@post, @post_comment] do |f| %>
-      <%= f.label :"総合評価" %>
-      <%= f.hidden_field :total_score, class: 'form-control' %>
-              <div id="total_post_raty"></div>
-            <script>
-            var total_score_raty_elem = document.querySelector('#total_post_raty');
-            var total_score_raty_opt = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              scoreName: 'comment[total_score]',
-              half: true,
-              //星画像の指定などのオプションをここに記述,
-             };
-            raty(total_score_raty_elem, total_score_raty_opt);
-            </script>
+<div class="row mt-5 justify-content-center align-items-center">
+  <p>コメントする</p>
+  <%= form_with model: [@post, @post_comment] do |f| %>
+    <div class="row">
+      <div class="col-6">
+        <%= f.text_area :comment_introduction, rows: '5', placeholder: "コメントは120文字まで" %>
+      </div>
+      <div class="col-6">
+        <%= f.label :"総合評価" %>
+        <%= f.hidden_field :total_score, class: 'form-control' %>
+        <div id="total_post_raty"></div>
+        <script>
+          var total_score_raty_elem = document.querySelector('#total_post_raty');
+          var total_score_raty_opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'comment[total_score]',
+            half: true,
+            //星画像の指定などのオプションをここに記述,
+          };
+          raty(total_score_raty_elem, total_score_raty_opt);
+        </script>
+ 
+
       <%= '読みやすさ' %>
         <%= f.hidden_field :read_score, class: 'form-control' %>
       <div id="read_score_raty"></div>
@@ -236,9 +241,9 @@
              };
             raty(usability_score_raty_elem, usability_score_raty_opt);
           </script>
-        <%= f.text_area :comment_introduction, rows: '5', placeholder: "コメントは120文字まで" %>
         <%= f.submit "送信する" %>
       <% end %>
+      </div>
     </div>
 
   </div>
