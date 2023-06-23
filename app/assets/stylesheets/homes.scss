@@ -39,3 +39,25 @@
   background-size: contain;
 }
 
+#title {
+  display: flex;
+  overflow: hidden;
+  color: gray;
+  font-size: 32px;
+  font-weight: bold;
+  span {
+    display: inline-block;
+    transform: translateY(105%);
+    @for $i from 1 to 18 {
+      &:nth-child(#{$i}) {
+        animation: fadeInText 1s ease 0.1 * $i + s 
+forwards;
+      }
+    }
+  }
+}
+@keyframes fadeInText {
+  100% {
+    transform: translateY(0);
+  }
+}
