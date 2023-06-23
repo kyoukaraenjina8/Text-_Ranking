@@ -10,7 +10,7 @@
   <div class="row mt-5">
     <div class="col-3">
       <p>投稿者名：<%= post.user.name %>さん</p>
-      <p><%= image_tag post.get_image(170, 170) %></p>
+      <p><%= image_tag post.get_image(250, 250) %></p>
     </div>
     <div class="box col-6">
       <%= link_to post_path(post.id) do %>
@@ -45,7 +45,7 @@
           }
       );
       </script>
-    <P><%= link_to "このテキストを評価する", post_path(post.id) %></P>
+    <P><%= link_to "Textの詳細を見る＆コメントする", post_path(post.id) %></P>
     </div>
   </div>
   <!--<div class="row">-->

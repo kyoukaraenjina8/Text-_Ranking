@@ -28,8 +28,8 @@
         <%= image_tag user_post.get_image(150, 150) %>
       <% end %>
     </div>
-<div class="col-7">
-  <table class='table table-bordered mt-2'>
+<div class="col-7 text-center">
+  <table class='user-show-table table-bordered mt-2'>
       <tr>
         <th width="120"><%= 'テキスト名' %></th>
         <td><%= link_to edit_post_path(user_post.id) do %>
@@ -58,7 +58,7 @@
     </table>
 </div>
 
-    <div class="col-3">
+    <div class="col-3 text-center">
       <%= 'みんなの評価' %></br>
       <%= '総合評価' %><%= user_post.comments.average(:total_score).to_f.round(1) %>
       <div id="post_raty_<%= user_post.id %>" data-score="<%= user_post.comments.average(:total_score).to_f.round(1) %>"></div>

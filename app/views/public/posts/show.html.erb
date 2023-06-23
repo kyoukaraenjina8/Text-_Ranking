@@ -109,14 +109,9 @@
   </div>
   <div class="scroll row">
     <% @post.comments.each do |comment| %>
-      <div class="col-3">
-        <p>投稿者名：<%= comment.user.name %></p>
+      <div class="comment-box col-3">
+        <span class="box-title">投稿者名：<%= comment.user.name %></span>
         <p>コメント：<%= comment.comment_introduction %></p>
-        <p>
-          <% if comment.user == current_user %>
-            <%= link_to "削除", post_comment_path(@post, comment.id), method: :delete %>
-          <% end %>
-        </p>
         <%= '総合評価' %>
         <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.total_score %>"></div>
         <script>
@@ -168,6 +163,11 @@
             half: true
           });
         </script>
+        <p>
+          <% if comment.user == current_user %>
+            <%= link_to "削除", post_comment_path(@post, comment.id), method: :delete %>
+          <% end %>
+        </p>
       </div>
     <% end %>
   </div>
@@ -236,7 +236,7 @@
              };
             raty(usability_score_raty_elem, usability_score_raty_opt);
           </script>
-        <%= f.text_area :comment_introduction, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.text_area :comment_introduction, rows: '5', placeholder: "コメントは120文字まで" %>
         <%= f.submit "送信する" %>
       <% end %>
     </div>

@@ -3,15 +3,20 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-body">
     <div class="container">
       <a class="navbar-brand text-dark" href="/">
-        <h1><%= image_tag 'text_ranking.jpg', size: "90x70"%></h1>
-      </a>
+          <div class="d-flex align-items-center">
+            <%= image_tag 'angryaikon.jpg', size: "90x70", class: "mr-2" %>
+            <div class="navbar-title">
+              <h1>Text</br>番付</h1>
+            </div>
+          </div>
+        </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
-          <li><strong>〜ようこそ、<%= current_user.name %>さん〜</strong></li>
+          <li><strong>〜ようこそ、</br><%= current_user.name %>さん〜</strong></li>
           <% if current_user.email != "guest@example.com" %>
           <li>
             <%= link_to 'テキスト投稿', new_posts_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
