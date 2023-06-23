@@ -37,6 +37,7 @@
   height: 700px; /* 高さ300px */
   background-image: asset-url('angry.jpg');
   background-size: contain;
+  background-position: -40px;
 }
 
 // #title {
@@ -332,4 +333,18 @@
   transform-origin: center;
   animation-name: intensifies;
   animation-duration: 5s;
+}
+
+.intensifies h1 {
+  font-size: 80px;
+	text-align:center;
+	line-height:0.95em;
+	font-weight:bold;
+	color: #DEB887;
+	text-shadow:
+		0.04em 0.02em 0 #B0BEC5,
+		0.08em 0.05em 0 rgba(0, 0, 0, 0.6);
+}
+.main-text p {
+  font-family:sans-serif;
 }
