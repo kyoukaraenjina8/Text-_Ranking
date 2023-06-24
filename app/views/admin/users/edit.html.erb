@@ -5,7 +5,7 @@
 
   <div class="row mt-2">
     <div class="col-8 mx-auto text-center">
-        <%= form_with model: @admin_edit, url: admin_user_path do |f| %>
+      <%= form_with model: @admin_edit, url: admin_user_path do |f| %>
         <div class="field">
           <%= f.label :name %><br />
           <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
@@ -15,13 +15,13 @@
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
         <div class="field">
-            <%= f.radio_button :is_deleted, false %>
-            <%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
-            <%= f.radio_button :is_deleted, true %>
-            <%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
+          <%= f.radio_button :is_deleted, false %>
+          <%= f.label :is_deleted, "有効", { value: :false, style: "display: inline-block;" } %>
+          <%= f.radio_button :is_deleted, true %>
+          <%= f.label :is_deleted, "退会", { value: :true, style: "display: inline-block;" } %>
         </div>
-    <%= f.submit '変更を保存' %>
-    <% end %>
+        <%= f.submit '変更を保存' %>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>

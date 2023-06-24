@@ -14,9 +14,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav pl-5">
         <% if user_signed_in? %>
-          <li><strong>〜ようこそ、</br><%= current_user.name %>さん〜</strong></li>
           <% if current_user.email != "guest@example.com" %>
           <li>
             <%= link_to 'テキスト投稿', new_posts_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
@@ -48,7 +47,9 @@
         </ul>
       </div>
       <% if user_signed_in? %>
-  <div class="search_form m-1">
+  <div class="search_form">
+  <strong>〜ようこそ、<%= current_user.name %>さん〜</strong>
+
     <%= form_with url: searches_search_path, local: true, method: :get do |f| %>
       <%= f.text_field :word, placeholder: "Textの名前で検索" %>
       <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>

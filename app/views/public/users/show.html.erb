@@ -7,80 +7,59 @@
       <h3 class="text-center m-4">マイページ</h3>
       <strong>登録情報</strong>
       <%= link_to '編集する', edit_user_path, class: "btn btn-outline-success btn-sm" %>
-      <table class='table table-bordered mt-2'>
+      <table class='table table-bordered table-hover mt-2'>
         <tr>
           <td class="table-secondary col-md-2">ニックネーム：</td>
-          <td>
-            <%= current_user.name %>
-          </td>
+          <td style="background-color: white;"><%= current_user.name %></td>
         </tr>
         <tr>
           <td class="table-secondary">メールアドレス：</td>
-          <td><%= current_user.email %></td>
+          <td style="background-color: white;"><%= current_user.email %></td>
         </tr>
       </table>
-
-            <strong>投稿一覧</strong>
-      <% @user_post.each do |user_post| %>
-
+    </div>
+  <strong>投稿一覧</strong>
+  <% @user_post.each do |user_post| %>
   <div class="row mt-5">
-    <div class="col-2">
+    <div class="col-3">
       <%= link_to "編集", edit_post_path(user_post.id) %>
       <%= link_to "削除", post_path(user_post), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
       <%= link_to post_path(user_post.id) do %>
-        <%= image_tag user_post.get_image(150, 150) %>
+        <%= image_tag user_post.get_image(250, 250) %>
       <% end %>
     </div>
-<div class="col-7 text-center">
-  <table class='user-show-table table-bordered mt-2'>
-      <tr>
-        <th width="120"><%= 'テキスト名' %></th>
-        <td><%= link_to edit_post_path(user_post.id) do %>
-            ：<%= user_post.text_name %>
-            <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th><%= '価格' %></th>
-        <td>：¥<%= user_post.price %></td>
-      </tr>
-      <tr>
-        <th><%= '商品説明' %></th>
-        <td height="120"><%= truncate(user_post.introduction, length: 82) do %>
-          (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）</td></tr>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th><%= 'レビュー' %></th>
-        <td height="120"><%= truncate(user_post.review, length: 82) do %>
-          (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）</td></tr>
-          <% end %>
-        </td>
-      </tr>
-    </table>
-</div>
-
+    <div class="box col-6">
+      <div class="post-title"><%= user_post.text_name %></div>
+      <p>投稿日：<%= user_post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= user_post.price %>円</p>
+      <p>
+        商品説明：<%= truncate(user_post.introduction, length: 60) do %>
+          (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）
+        <% end %>
+      </p>
+      <p>
+        投稿者レビュー：<%= truncate(user_post.review, length: 60) do %>
+          (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）
+        <% end %>
+      </p>
+    </div>
     <div class="col-3 text-center">
       <%= 'みんなの評価' %></br>
       <%= '総合評価' %><%= user_post.comments.average(:total_score).to_f.round(1) %>
       <div id="post_raty_<%= user_post.id %>" data-score="<%= user_post.comments.average(:total_score).to_f.round(1) %>"></div>
       <script>
-            // scriptファイルをどのidの部分に配置するかを指定
-      raty(document.querySelector('#post_raty_<%= user_post.id %>'),
-          {
-            starOn: "<%= asset_path('star-on.png') %>",
-            starOff: "<%= asset_path('star-off.png') %>",
-            starHalf: "<%= asset_path('star-half.png') %>",
-            score: <%= user_post.comments.average(:total_score).to_f.round(1) %>,
-            readOnly: true,
-            half: true,
-          }
-      );
+        // scriptファイルをどのidの部分に配置するかを指定
+        raty(document.querySelector('#post_raty_<%= user_post.id %>'), {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          score: <%= user_post.comments.average(:total_score).to_f.round(1) %>,
+          readOnly: true,
+          half: true,
+        });
       </script>
     </div>
-    </div>
-          <% end %>
   </div>
-</div>
+  <% end %>
+
+  </div>
 </div>
