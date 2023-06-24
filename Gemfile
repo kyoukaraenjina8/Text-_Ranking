@@ -63,3 +63,4 @@ gem "net-pop"
 gem "net-imap"
 gem 'devise'
 gem 'kaminari','~> 1.2.1'
+gem 'rexml', '~> 3.2', '>= 3.2.5'
