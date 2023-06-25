@@ -107,7 +107,7 @@
     <% @post.comments.each do |comment| %>
       <div class="comment-box col-3">
         <span class="box-title">投稿者名：<%= comment.user.name %></span>
-        <p>コメント：<%= comment.comment_introduction %></p>
+        <p>コメント：<br><%= comment.comment_introduction %></p>
         <%= '総合評価' %>
         <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.total_score %>"></div>
         <script>
@@ -171,7 +171,7 @@
 
 
   <div class="row mt-5 justify-content-center align-items-center">
-  <p>コメントする</p>
+  <h3>コメントする</h3>
   <%= form_with model: [@post, @post_comment] do |f| %>
 
     <div class="row">
