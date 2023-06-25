@@ -57,6 +57,6 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:image,:text_name, :introduction, :review, :price, :total_score, :read_score, :price_score, :usability_score)
+    params.require(:post).permit(:image,:text_name, :introduction, :review, :price )
   end
 end

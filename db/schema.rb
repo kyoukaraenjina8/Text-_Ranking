@@ -66,15 +66,10 @@ ActiveRecord::Schema.define(version: 2023_06_15_092038) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "ranking"
     t.string "text_name", null: false
     t.text "introduction", null: false
     t.text "review", null: false
     t.integer "price", null: false
-    t.float "total_score", default: 0.0, null: false
-    t.float "read_score", default: 0.0, null: false
-    t.float "price_score", default: 0.0, null: false
-    t.float "usability_score", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
