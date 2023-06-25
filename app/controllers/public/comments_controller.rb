@@ -1,25 +1,19 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:new]
 
-  # def new
-  #   @comment = Comment.new
-  # end
-
   def create
-    post_comment = Post.find(params[:post_id])
-    comment = Comment.new(post_comment_params)
-    comment.user_id = current_user.id
-    comment.post_id = post_comment.id
+      post_comment = Post.find(params[:post_id])
+      comment = Comment.new(post_comment_params)
+      comment.user_id = current_user.id
+      comment.post_id = post_comment.id
     if comment.save
-    redirect_to post_path(post_comment.id)
-    flash[:notice] = '新規コメントを作成しました。'
+      redirect_to post_path(post_comment.id)
+      flash[:notice] = '新規コメントを作成しました。'
     else
-    render template: "posts/show(post_comment.id)"
+      redirect_to post_path(post_comment.id)
+      flash[:alert] = '新規コメントを作成できませんでした。'
     end
   end
-  # def index
-  #   @comments = Comment.all
-  # end
 
   def destroy
     Comment.find(params[:id]).destroy

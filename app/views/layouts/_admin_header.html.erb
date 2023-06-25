@@ -21,9 +21,6 @@
             <%= link_to 'ユーザーリスト', admin_users_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <li>
-            <%= link_to 'text一覧', admin_posts_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
-          </li>
-          <li>
             <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
         <% else %>

@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
    before_action :authenticate_user!
-   before_action :is_matching_login_user, only: [:show,:edit,:withdraw]
+   before_action :is_matching_login_user, only: [:show,:edit]
    before_action :ensure_guest_user, only: [:show,:edit]
 
 
