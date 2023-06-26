@@ -1,21 +1,10 @@
 <div class="container">
+  <h1><%= @post.text_name %>の詳細ページ</h1>
   <div class="row pt-5">
-    <% if @post.errors.any? %>
-      <%= @post.errors.count %>件のエラーが発生しました
-      <ul>
-        <% @post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
-
     <div class="col-3">
       <p>投稿者名：<%= @post.user.name %>さん</p>
       <%= image_tag @post.get_image(250, 250) %>
       <div>
-        <% if @post.user == current_user %>
-          <%= link_to "投稿編集", edit_post_path(@post) %>
-        <% end %>
         <%= link_to "削除", admin_post_path(@post), method: :delete %>
       </div>
     </div>

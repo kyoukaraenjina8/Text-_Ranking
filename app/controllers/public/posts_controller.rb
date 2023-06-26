@@ -44,7 +44,7 @@ class Public::PostsController < ApplicationController
       post = Post.find(params[:id])
       post.destroy
       flash[:notice] = 'Textを削除しました。'
-      redirect_to posts_path
+      redirect_to user_path(current_user) 
     end
   
   private

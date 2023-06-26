@@ -5,7 +5,7 @@
     <div class="col-10 d-grid mx-auto">
       <h3 class="text-center m-4">マイページ</h3>
       <strong>登録情報</strong>
-      <%= link_to '編集する', edit_user_path, class: "btn btn-outline-success btn-sm" %>
+      <%= link_to '編集する', edit_user_path, class: "btn btn-outline-info btn-sm" %>
       <table class='table table-bordered table-hover mt-2'>
         <tr>
           <td class="table-secondary col-md-2">ニックネーム：</td>
@@ -21,14 +21,17 @@
   <% @user_post.each do |user_post| %>
   <div class="row mt-5">
     <div class="col-3">
-      <%= link_to "編集", edit_post_path(user_post.id) %>
-      <%= link_to "削除", post_path(user_post), method: :delete, "data-confirm" => "本当に削除しますか？" %></p>
+      <%= link_to "テキストを編集する", edit_post_path(user_post.id), class: "btn btn-outline-info btn-sm" %>
       <%= link_to post_path(user_post.id) do %>
         <%= image_tag user_post.get_image(250, 250) %>
       <% end %>
     </div>
     <div class="box col-6">
-      <div class="post-title"><%= user_post.text_name %></div>
+      <div class="post-title">
+        <%= link_to post_path(user_post.id) do %>
+        <%= user_post.text_name %>
+        <% end %>
+      </div>
       <p>投稿日：<%= user_post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= user_post.price %>円</p>
       <p>
         商品説明：<%= truncate(user_post.introduction, length: 60) do %>
