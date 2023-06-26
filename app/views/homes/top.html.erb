@@ -137,12 +137,13 @@
               }
           );
         </script>
+        <%= link_to "このテキストを評価する", post_path(post.id) %>
     </div>
   </div>
 
   <div class="row">
     <div class="col mt-5">
-      <h4>すべてのコメント</h4><%= link_to "（コメントの投稿はこちら）", post_path(post.id) %>
+      <h4>すべてのコメント<i class="fas fa-mouse">scroll</i></h4>
     </div>
   </div>
 

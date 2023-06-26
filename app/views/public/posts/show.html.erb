@@ -185,7 +185,7 @@
   </div>
 
   <div class="row mt-5">
-  <h4>すべてのコメント</h4>
+    <h4>すべてのコメント<i class="fas fa-mouse">scroll</i></h4>
   </div>
 
   <div class="scroll row">
@@ -247,7 +247,7 @@
 
         <p>
           <% if comment.user == current_user %>
-            <%= link_to "削除", post_comment_path(@post, comment.id), method: :delete %>
+            <%= link_to "削除", post_comment_path(@post, comment.id), method: :delete, data: { confirm: "本当に投稿を削除しますか？" } %>
           <% end %>
         </p>
       </div>

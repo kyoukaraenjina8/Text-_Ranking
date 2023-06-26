@@ -1,5 +1,6 @@
 <div class="container p-5">
-  <h3><%= @user_post.name %>さんの投稿一覧（全<%= @user_post.posts.count %>件）</h3>
+  <h3><%= @user_post.name %>さんの投稿一覧（全<%= @user_post.posts.count %>件）<i class="fas fa-mouse">scroll</i>
+</h3>
   <div class="row scroll">
     <div class="col">
       <table class='table'>
@@ -42,7 +43,7 @@
                 <%= post.comments.count %>
               </td>
               <td>
-                <%= link_to "削除", admin_post_path(post), method: :delete %>
+                <%= link_to "削除", admin_post_path(post), method: :delete, data: { confirm: "本当に投稿を削除しますか？" } %>
               </td>
             </tr>
           <% end %>
@@ -50,7 +51,7 @@
       </table>
     </div>
   </div>
-  <h3>コメント一覧（全<%= @user_comment.comments.count %>件）</h3>
+  <h3>コメント一覧（全<%= @user_comment.comments.count %>件）<i class="fas fa-mouse">scroll</i></h3>
   <div class="row scroll">
     <div class="col">
       <table class='table'>
@@ -81,7 +82,7 @@
                 <%= comment.comment_introduction %>
               </td>
               <td>
-                <%= link_to "削除", admin_comment_path(comment), method: :delete %>
+                <%= link_to "削除", admin_comment_path(comment), method: :delete, data: { confirm: "本当に投稿を削除しますか？" } %>
               </td>
             </tr>
           <% end %>

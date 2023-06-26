@@ -37,7 +37,6 @@ namespace :admin do
     resources :comments, only: [:destroy]
   resources :users, only: [:index,:edit,:update,:destroy]
   patch '/users/withdraw' => 'users#withdraw'
-  #delete '/users/destroy_comment' => 'users#destroy_comment'
   get 'users/:id/post_index' => 'users#post_index'
   get 'users/:id/comment_index' => 'users#comment_index'
 

@@ -1,0 +1,93 @@
+<!--<div class="container p-5">-->
+<!--  <h3><%= @user_post.name %>さんの投稿一覧（全<%= @user_post.posts.count %>件）<i class="fas fa-mouse">scroll</i>-->
+<!--</h3>-->
+<!--  <div class="row scroll">-->
+<!--    <div class="col">-->
+<!--      <table class='table'>-->
+<!--        <thead>-->
+<!--          <tr>-->
+<!--            <th nowrap>投稿日時</th>-->
+<!--            <th nowrap>テキスト名</th>-->
+<!--            <th nowrap>テキスト説明</th>-->
+<!--            <th nowrap>レビュー内容</th>-->
+<!--            <th nowrap>価格</th>-->
+<!--            <th nowrap>コメント数</th>-->
+<!--            <th></th>-->
+<!--          </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--          <% @posts.each do |post| %>-->
+<!--            <tr>-->
+<!--              <td>-->
+<!--                <%= link_to admin_post_path(post.id) do %>-->
+<!--                  <%= post.created_at.strftime('%Y/%m/%d %H:%M') %>-->
+<!--                <% end %>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <%= post.text_name %>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <%= truncate(post.introduction, length: 48) do %>-->
+<!--                  (<%= link_to '投稿詳細', admin_post_path(post.id) %>）-->
+<!--                <% end %>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <%= truncate(post.review, length: 48) do %>-->
+<!--                  (<%= link_to '投稿詳細', admin_post_path(post.id) %>）-->
+<!--                <% end %>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                ¥<%= post.price %>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <%= post.comments.count %>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <%= link_to "削除", admin_post_path(post), method: :delete, data: { confirm: "本当に投稿を削除しますか？" } %>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          <% end %>-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <h3>コメント一覧（全<%= @user_comment.comments.count %>件）<i class="fas fa-mouse">scroll</i></h3>-->
+<!--  <div class="row scroll">-->
+<!--    <div class="col">-->
+<!--      <table class='table'>-->
+<!--        <thead>-->
+<!--          <tr>-->
+<!--            <th nowrap>投稿日時</th>-->
+<!--            <th nowrap>投稿者名</th>-->
+<!--            <th nowrap>テキスト名</th>-->
+<!--            <th nowrap>コメント内容</th>-->
+<!--            <th></th>-->
+<!--          </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--          <% @comments.each do |comment| %>-->
+<!--            <tr>-->
+<!--              <td>-->
+<!--                <%= link_to admin_post_path(comment.post.id) do %>-->
+<!--                <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>-->
+<!--                <% end %>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <%= comment.post.user.name %>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <%= comment.post.text_name %>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <%= comment.comment_introduction %>-->
+<!--              </td>-->
+<!--              <td>-->
+<!--                <%= link_to "削除", admin_comment_path(comment), method: :delete, data: { confirm: "本当に投稿を削除しますか？" } %>-->
+<!--              </td>-->
+<!--            </tr>-->
+<!--          <% end %>-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
