@@ -50,15 +50,19 @@
       <P><%= link_to "テキストの詳細をチェック", post_path(post.id) %></P>
     </div>
     <div class="box col-6">
-      <div class="post-title"><%= post.text_name %></div>
-      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円</p></br>
+      
+      <div class="post-title">
+        <%= post.text_name %>
+      </div>
+      
+      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円</p>
       <p>
-        商品説明：<%= truncate(post.introduction, length: 120) do %>
+        商品説明：<br><%= truncate(post.introduction, length: 120) do %>
             (続きは<%= link_to '詳細', post_path(post) %>をクリック。）
             <% end %>
-      </p></br>
+      </p>
       <p>
-        投稿者レビュー：<%= truncate(post.review, length: 100) do %>
+        投稿者レビュー：<br><%= truncate(post.review, length: 100) do %>
             (続きは<%= link_to '詳細', post_path(post) %>をクリック。）
             <% end %>
       </p>

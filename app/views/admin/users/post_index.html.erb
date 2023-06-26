@@ -1,7 +1,7 @@
 <div class="container p-5">
-  <div class="row">
+  <h3><%= @user_post.name %>さんの投稿一覧（全<%= @user_post.posts.count %>件）</h3>
+  <div class="row scroll">
     <div class="col">
-      <h3><%= @user_post.name %>さんの投稿一覧（全<%= @user_post.posts.count %>件）</h3>
       <table class='table'>
         <thead>
           <tr>
@@ -48,22 +48,18 @@
           <% end %>
         </tbody>
       </table>
-      <%= paginate @posts %>
     </div>
   </div>
-  <div class="row">
+  <h3>コメント一覧（全<%= @user_comment.comments.count %>件）</h3>
+  <div class="row scroll">
     <div class="col">
-    <h3>コメント一覧（全<%= @user_comment.comments.count %>件）</h3>
       <table class='table'>
         <thead>
           <tr>
             <th nowrap>投稿日時</th>
+            <th nowrap>投稿者名</th>
             <th nowrap>テキスト名</th>
             <th nowrap>コメント内容</th>
-            <th nowrap>総合評価</th>
-            <th nowrap>読みやすさ</th>
-            <th nowrap>価格の妥当性</th>
-            <th nowrap>実用性</th>
             <th></th>
           </tr>
         </thead>
@@ -71,7 +67,12 @@
           <% @comments.each do |comment| %>
             <tr>
               <td>
-                  <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+                <%= link_to admin_post_path(comment.post.id) do %>
+                <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+                <% end %>
+              </td>
+              <td>
+                <%= comment.post.user.name %>
               </td>
               <td>
                 <%= comment.post.text_name %>
@@ -80,25 +81,12 @@
                 <%= comment.comment_introduction %>
               </td>
               <td>
-                <%= comment.total_score %>
-              </td>
-              <td>
-                <%= comment.read_score %>
-              </td>
-              <td>
-                <%= comment.price_score %>
-              </td>
-              <td>
-                <%= comment.usability_score %>
-              </td>
-              <td>
                 <%= link_to "削除", admin_comment_path(comment), method: :delete %>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
-    <%= paginate @comments %>
     </div>
   </div>
 </div>

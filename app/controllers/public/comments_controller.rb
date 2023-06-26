@@ -1,5 +1,4 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_user!, except: [:new]
 
   def create
       post_comment = Post.find(params[:post_id])

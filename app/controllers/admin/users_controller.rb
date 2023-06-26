@@ -21,9 +21,9 @@ class Admin::UsersController < ApplicationController
 
   def post_index
     @user_post = User.find(params[:id])
-    @posts = @user_post.posts.page(params[:page])
+    @posts = @user_post.posts.all
     @user_comment = User.find(params[:id])
-    @comments = @user_comment.comments.page(params[:page])
+    @comments = @user_comment.comments.all
   end
 
   private

@@ -23,3 +23,15 @@ Post.create!(
     {text_name: 'ゼロからわかる Ruby 超入門', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post3.jpg"), filename:"sample-post3.jpg"), introduction: '本書は、プログラミングが初めての方へ向けた、プログラミング言語Rubyの入門書です。Rubyはやりたいことを簡潔に書ける言語です。学習の際に余計なことを考える必要がなく、学ぶ内容に集中できます。これは初めて学ぶ言語として最高の特徴と言えます。実際の使用例も多く、クックパッドなどのたくさんのRubyで書かれたWebサービスたちが世界で多数稼働しています。この本の対象読者として、プログラミングをこれから始めたい方、他の言語を使ったことがあるがRubyは初めての方、Railsを学んだのでその基礎であるRubyを学びたい方、に当てはまる方は最適です。',review: '他言語を書いてきた私がRubyに入門する際、手に取りましたコード部分は全部打ち込んで、実行しわかったつもりになっても、練習問題を解くことで、ちゃんと理解できてないとこが炙り出されます。練習問題の解答集が別冊になってるのも便利でした。丸っこいキャラクターの挿絵イラストも可愛くて癒されます。',price: '2728', user_id: users[2].id }
   ]
 )
+
+Post.comments.create!(
+  [
+    {user_id: '1', post_id: '2', comment_introduction: 'ゼロからわかる Ruby 超入門を読んだこともあるがそれと少し、上級者向けかも。けど、二冊目に読む分としてはちょうどいい難易度に思えました。',total_score: '4',read_score: '3',price_score: '4',usability_score: '4'},
+    {user_id: '1', post_id: '3', comment_introduction: '分かりやすいようなイラストでの説明が多用されていたりと、初心者向けの一冊と言える。',total_score: '4',read_score: '4',price_score: '4',usability_score: '4'},
+    {user_id: '2', post_id: '1', comment_introduction: '全くの初心者から手にしたが、難しすぎて断念しかけた。用語の解説に使われている言葉がわからないシーンが多々あった',total_score: '2.5',read_score: '2',price_score: '2',usability_score: '3'},
+    {user_id: '2', post_id: '3', comment_introduction: '初心者でもわかるよう、噛み砕いた説明や図での説明が多くされています。初心者の初めの1冊目出来ます。',total_score: '4',read_score: '4',price_score: '4',usability_score: '5'},
+    {user_id: '3', post_id: '1', comment_introduction: '本書は冒頭に初心者の気持ちを裏切らない内容になっていますと書かれているが、その通りだと思う。他言語を習得済の私にとってはすごく学びやすく、楽しめる一冊であった。ただ、全くの諸学者には難しいかも。',total_score: '3',read_score: '2.5',price_score: '3',usability_score: '4'},
+    {user_id: '3', post_id: '2', comment_introduction: '現役のプロが執筆している入門書,超初心者には向かないがプログラムにかじったことあり、Rubyを学びたいならすごくおすすめです。',total_score: '5',read_score: '4',price_score: '5',usability_score: '5'}
+
+  ]
+)
