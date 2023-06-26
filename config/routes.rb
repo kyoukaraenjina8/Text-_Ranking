@@ -25,6 +25,7 @@ scope module: :public do
   get '/posts/rank' => 'posts#rank'
   get 'users/confirm_withdraw' => 'users#confirm_withdraw', as: 'confirm_withdraw'
   patch '/users/withdraw' => 'users#withdraw'
+  resources :genres, only: [:show]
   resources :users, only: [:show,:edit,:update]
   resource :posts, only: [:new,:create]
   resources :posts, only: [:show,:index,:destroy,:edit,:update] do
@@ -39,6 +40,8 @@ namespace :admin do
   patch '/users/withdraw' => 'users#withdraw'
   get 'users/:id/post_index' => 'users#post_index'
   get 'users/:id/comment_index' => 'users#comment_index'
+  resources :genres, only: [:index, :show, :edit, :create, :update]
+
 
 end
 
