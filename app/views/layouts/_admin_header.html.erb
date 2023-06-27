@@ -18,6 +18,9 @@
         <% if admin_signed_in? %>
           <li><strong>〜管理者ログイン中〜</strong></li>
           <li>
+            <%= link_to 'ジャンル追加・編集', admin_genres_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
+          </li>
+          <li>
             <%= link_to 'ユーザーリスト', admin_users_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <li>

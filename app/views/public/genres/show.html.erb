@@ -24,7 +24,7 @@
         <div class="post-title">
           <%= post.text_name %>
         </div>
-      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円</p>
+      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円　　ジャンル:<%= post.genre.genre_name %></p>
       <p>
         商品説明：<br><%= truncate(post.introduction, length: 90) do %>
           (続きは<%= link_to '詳細', post_path(post) %>をクリック。）

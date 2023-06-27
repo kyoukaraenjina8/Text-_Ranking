@@ -27,19 +27,19 @@
     <p>だから優しいピンクとベージュのカラーリングなわけです。ちょっとでも心が軽くなるように。</p>
     </div>
   </div>
-  <div class="card-header">
-    ジャンル一覧
-  </div>
-  <div class="card-body ">
+  
+  <h2><%= @genre.genre_name %>のRanking</h2>
+  <div class="box1-5">
+    <span class="box-title1-5">※下記のタグでジャンルごとのランキングが確認できます。</span>
     <ul class="genre-list">
       <% @genres.each do |genre| %>
-        <ul>
-          <%= link_to genre.genre_name, genre_rank_path(genre.id) %>
-        </ul>
+        <li class="genre-item">
+          <%= link_to genre.genre_name, genre_path(genre.id) %>
+        </li>
       <% end %>
     </ul>
   </div>
-  <h1>Ranking</h1>
+
   <% @genre_rankings.each.with_index(1) do |post, i| %>
   <div class="row mt-5">
     <div class="col text-center">
@@ -66,7 +66,7 @@
         <%= post.text_name %>
       </div>
 
-      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円</p>
+      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円　　ジャンル:<%= post.genre.genre_name %></p>
       <p>
         商品説明：<br><%= truncate(post.introduction, length: 120) do %>
             (続きは<%= link_to '詳細', post_path(post) %>をクリック。）
