@@ -111,8 +111,8 @@
         <%= @post.text_name %>
       </div>
       <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= @post.price %>円</p><br>
-      <p>商品説明：<%= @post.introduction %></p><br>
-      <p>投稿者レビュー：<%= @post.review %></p>
+      <p>商品説明：<br><%= @post.introduction %></p><br>
+      <p>投稿者レビュー：<br><%= @post.review %></p>
     </div>
 
     <div class="col-3 text-center pt-3">

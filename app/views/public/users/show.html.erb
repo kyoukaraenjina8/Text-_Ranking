@@ -34,12 +34,12 @@
       </div>
       <p>投稿日：<%= user_post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= user_post.price %>円</p>
       <p>
-        商品説明：<%= truncate(user_post.introduction, length: 60) do %>
+        商品説明：<br><%= truncate(user_post.introduction, length: 60) do %>
           (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）
         <% end %>
       </p>
       <p>
-        投稿者レビュー：<%= truncate(user_post.review, length: 60) do %>
+        投稿者レビュー：<br><%= truncate(user_post.review, length: 60) do %>
           (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）
         <% end %>
       </p>
