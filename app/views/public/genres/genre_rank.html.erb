@@ -11,8 +11,8 @@
   </div>
 
   <div class="row">
-    <div class="main-text col-10 offset-2 mb-2">
-    
+    <div class="main-text col-10 offset-2">
+
     <p>〜Text番付へようこそ〜</p>
 
     <p>テキスト通りにやったのになんででけへんねん！！</p>
@@ -27,21 +27,21 @@
     <p>だから優しいピンクとベージュのカラーリングなわけです。ちょっとでも心が軽くなるように。</p>
     </div>
   </div>
-  
-  <h2>Ranking（全テキスト）</h2>
-  <div class="box1-5">
-    <span class="box-title1-5">※下記のタグでジャンルごとのランキングが確認できます。</span>
+  <div class="card-header">
+    ジャンル一覧
+  </div>
+  <div class="card-body ">
     <ul class="genre-list">
       <% @genres.each do |genre| %>
-        <li class="genre-item">
+        <ul>
           <%= link_to genre.genre_name, genre_rank_path(genre.id) %>
-        </li>
+        </ul>
       <% end %>
     </ul>
   </div>
-  
-    <% @posts.each.with_index(1) do |post, i| %>
-    <div class="row">
+  <h1>Ranking</h1>
+  <% @genre_rankings.each.with_index(1) do |post, i| %>
+  <div class="row mt-5">
     <div class="col text-center">
       <% if i == 1 %>
         <div class="first-place"></div>
@@ -61,11 +61,11 @@
       <P><%= link_to "テキストの詳細をチェック", post_path(post.id) %></P>
     </div>
     <div class="box col-6">
-      
+
       <div class="post-title">
         <%= post.text_name %>
       </div>
-      
+
       <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円</p>
       <p>
         商品説明：<br><%= truncate(post.introduction, length: 120) do %>

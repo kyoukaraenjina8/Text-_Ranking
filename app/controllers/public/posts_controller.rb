@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
     end
 
     def index
-      @posts = Post.all
+      @posts = Post.page(params[:page])
       @genres = Genre.all.order(created_at: :desc)
     end
 

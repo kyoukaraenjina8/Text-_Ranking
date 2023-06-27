@@ -3,13 +3,13 @@
   <%= flash[:notice] %>
 </div>
 <div class="container">
-  <div class="card-header">
-    ジャンル一覧
-  </div>
-  <div class="card-body">
+
+    <h5>全てのtext一覧（全<%= @posts.count %>件）</h5>
+  <div class="box1-5">
+    <span class="box-title1-5">※下記のタグでジャンルごとのランキングが確認できます。</span>
     <ul class="genre-list">
       <% @genres.each do |genre| %>
-        <li>
+        <li class="genre-item">
           <%= link_to genre.genre_name, genre_path(genre.id) %>
         </li>
       <% end %>
@@ -17,15 +17,13 @@
   </div>
 
 
-  <h5>全てのtext一覧（全<%= @posts.count %>件）</h5>
-
   <% @posts.each do |post| %>
 
     <div class="row mt-5">
       <div class="col-3">
         <p>投稿者名：<%= post.user.name %>さん</p>
         <p><%= image_tag post.get_image(250, 250) %></p>
-        <p><%= link_to "テキストの詳細をチェック", post_path(post.id) %></p>
+        <p><%= link_to "テキストの詳細＆評価をチェック", post_path(post.id) %></p>
       </div>
       <div class="box col-6">
           <div class="post-title">
@@ -116,6 +114,7 @@
       </div>
     </div>
   <% end %>
+  <%= paginate @posts %>
 </div>
 
 

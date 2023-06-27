@@ -25,6 +25,7 @@ scope module: :public do
   get '/posts/rank' => 'posts#rank'
   get 'users/confirm_withdraw' => 'users#confirm_withdraw', as: 'confirm_withdraw'
   patch '/users/withdraw' => 'users#withdraw'
+  get 'genres/:id/genre_rank' => 'genres#genre_rank', as: 'genre_rank'
   resources :genres, only: [:show]
   resources :users, only: [:show,:edit,:update]
   resource :posts, only: [:new,:create]
