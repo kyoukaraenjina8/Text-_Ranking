@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="page-title">ジャンル追加・編集画面</h2>
   <div class="row">
-    <div class="col-6 mx-left">
+    <div class="col-6 m-5">
       <%= form_with model: @genre, url: admin_genre_path(@genre),method: :patch do |f| %>
         <td><%= f.label :"カテゴリー名", class: "mr-3" %></td>
         <td><%= f.text_field :genre_name, class: "mr-5" %></td>
