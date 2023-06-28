@@ -16,6 +16,13 @@ users = User.create!(
   ]
 )
 
+Genre.create!(
+  [
+    {genre_name: 'ruby'},
+    {genre_name: 'PHP'}
+  ]
+)
+
 Post.create!(
   [
     {text_name: '楽しいruby', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), introduction: '初版から17年。改訂とともに変化しながら、ずっと読まれ続けている定番書です。第6版では、最新のバージョンに対応。プログラミング初心者でも読み解けるように、チュートリアル、基礎、クラス、実践とテーマを切り分けて、平易に解説。Rubyの基礎から応用までがわかる一冊。発行日	2002年4月10日　初版第1刷発行2019年3月22日　第6版第1刷発行「本書は初心者の気持ちを裏切らない出来になっています」 （まつもと ゆきひろ）高橋征義、後藤裕蔵 著まつもと ゆきひろ 監修ソフトウェア技術者、オブジェクト指向プログラミング言語（スクリプト言語）「Ruby」の開発者として知られる。たのしいRuby第6版。',review: '本書はプログラミング初心者の目線には全く立てておらず、他言語習得済みの方向けの説明方法となっています。例えばクラスなどのオブジェクト指向として要になる部分は、初学者向けの書籍では最も説明に注力する必要がありますが、この本は驚くほどアッサリと済ませています。オブジェクト指向がどういうものかを理解するのはこの本ではとても難しいと思います。一方で他のオブジェクト指向言語を既習済みの方にとってはサクサク進めます。対象読者と説明方法のミスマッチを再検討して頂きたい内容であり、プログラミング初心者向けの丁寧な説明にするか、あるいは対象読者のレベルを引き上げるか。',price: '2860', genre_id:1, user_id: users[0].id },
@@ -31,7 +38,7 @@ Comment.create!(
   [
     {user_id: 1, post_id: 2, comment_introduction: 'ゼロからわかる Ruby 超入門を読んだこともあるがそれと少し、上級者向けかも。けど、二冊目に読む分としてはちょうどいい難易度に思えました。',total_score: '4',read_score: '3',price_score: '4',usability_score: '4'},
     {user_id: 1, post_id: 3, comment_introduction: '分かりやすいようなイラストでの説明が多用されていたりと、初心者向けの一冊と言える。',total_score: '4',read_score: '4',price_score: '4',usability_score: '4'},
-    {user_id: 2, post_id: 1, comment_introduction: '全くの初心者から手にしたが、難しすぎて断念しかけた。用語���解説に使われている言葉がわからないシーンが多々あった',total_score: '2.5',read_score: '2',price_score: '2',usability_score: '3'},
+    {user_id: 2, post_id: 1, comment_introduction: '全くの初心者から手にしたが、難しすぎて断念しかけた。用語解説に使われている言葉がわからないシーンが多々あった',total_score: '2.5',read_score: '2',price_score: '2',usability_score: '3'},
     {user_id: 2, post_id: 3, comment_introduction: '初心者でもわかるよう、噛み砕いた説明や図での説明が多くされています。初心者の初めの1冊目出来ます。',total_score: '4',read_score: '4',price_score: '4',usability_score: '5'},
     {user_id: 3, post_id: 2, comment_introduction: '本書は冒頭に初心者の気持ちを裏切らない内容になっていますと書かれているが、その通りだと思う。他言語を習得済の私にとってはすごく学びやすく、楽しめる一冊であった。ただ、全くの諸学者には難しいかも。',total_score: '3',read_score: '2.5',price_score: '3',usability_score: '4'},
     {user_id: 3, post_id: 3, comment_introduction: '現役のプロが執筆している入門書,超初心者には向かないがプログラムにかじったことあり、Rubyを学びたいならすごくおすすめです。',total_score: '5',read_score: '4',price_score: '5',usability_score: '5'},
@@ -41,12 +48,5 @@ Comment.create!(
     {user_id: 2, post_id: 5, comment_introduction: '初めての1冊目としては十分です。',total_score: '3',read_score: '3.5',price_score: '3',usability_score: '5'},
     {user_id: 3, post_id: 6, comment_introduction: '個人的には難しい表現が多くこれを一冊目にして学ぶのは難しかった。',total_score: '3',read_score: '2.5',price_score: '3',usability_score: '4'},
     {user_id: 3, post_id: 6, comment_introduction: '入門書としてすごく整っている,すごくおすすめです。',total_score: '5',read_score: '4',price_score: '5',usability_score: '5'}
-  ]
-)
-
-Genre.create!(
-  [
-    {genre_name: 'ruby'},
-    {genre_name: 'PHP'}
   ]
 )

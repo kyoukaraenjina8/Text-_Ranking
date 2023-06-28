@@ -34,7 +34,7 @@
     <ul class="genre-list">
       <% @genres.each do |genre| %>
         <li class="genre-item">
-          <%= link_to genre.genre_name, genre_path(genre.id) %>
+          <%= link_to genre.genre_name, genre_rank_path(genre.id) %>
         </li>
       <% end %>
     </ul>
