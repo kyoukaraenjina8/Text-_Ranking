@@ -33,11 +33,11 @@ scope module: :public do
 end
 
 namespace :admin do
-  resources :posts, only: [:index,:destroy,:show]
+  resources :posts, only: [:destroy,:show]
     resources :comments, only: [:destroy]
-  resources :users, only: [:index,:edit,:update,:destroy]
+  resources :users, only: [:show,:index,:edit,:update,:destroy]
   patch '/users/withdraw' => 'users#withdraw'
-  get 'users/:id/post_index' => 'users#post_index'
+  #get 'users/:id/post_index' => 'users#post_index'
   get 'users/:id/comment_index' => 'users#comment_index'
 
 end

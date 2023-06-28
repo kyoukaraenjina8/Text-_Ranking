@@ -19,7 +19,7 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def post_index
+  def show
     @user_post = User.find(params[:id])
     @posts = @user_post.posts.all
     @user_comment = User.find(params[:id])
