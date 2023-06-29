@@ -2,14 +2,14 @@
   <div class="row">
     <h1>投稿編集</h1>
   </div>
-  
+
   <% if @post_edit.errors.any? %>
     <%= @post_edit.errors.count %>件のエラーが発生しました
     <ul>
       <% @post_edit.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      
+
     </ul>
   <% end %>
   <div class="row m-2">

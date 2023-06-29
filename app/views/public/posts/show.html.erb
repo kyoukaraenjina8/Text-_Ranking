@@ -37,7 +37,7 @@
                   <%= f.hidden_field :price_score, class: 'form-control' %>
                   <div id="price_score_raty"></div>
 
-                  <%= '実用度' %>
+                  <%= '初心者向け度' %>
                   <%= f.hidden_field :usability_score, class: 'form-control' %>
                   <div id="usability_score_raty"></div>
                 </div>
@@ -165,7 +165,7 @@
         );
       </script>
 
-      <%= '実用度' %>
+      <%= '初心者向け度' %>
       <div id="usability_score_raty_<%= @post.id %>" data-score="<%= @post.comments.average(:usability_score).to_f.round(1) %>"></div>
       <script>
         // scriptファイルをどのidの部分に配置するかを指定
@@ -232,7 +232,7 @@
           });
         </script>
 
-        <%= '実用度' %>
+        <%= '初心者向け度' %>
         <div id="comment_usability_score_raty_<%= comment.id %>" data-score="<%= comment.usability_score %>"></div>
         <script>
           raty(document.querySelector('#comment_usability_score_raty_<%= comment.id %>'), {

@@ -93,7 +93,7 @@
             );
           </script>
 
-          <%= '実用度' %>
+          <%= '初心者向け度' %>
           <div id="usability_score_raty_<%= post.id %>" data-score="<%= post.comments.average(:usability_score).to_f.round(1) %>"></div>
           <script>
             // scriptファイルをどのidの部分に配置するかを指定
