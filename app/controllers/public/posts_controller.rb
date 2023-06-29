@@ -1,15 +1,16 @@
 class Public::PostsController < ApplicationController
     before_action :authenticate_user!
     before_action :ensure_guest_user_post, only: [:show,:edit]
-  
+
     def new
       @post = Post.new
     end
-  
+
     def index
-      @posts = Post.all
+      @posts = Post.page(params[:page])
+      @genres = Genre.all.order(created_at: :desc)
     end
-  
+
     def create
       @post = Post.new(post_params)
       @post.user_id = current_user.id
@@ -20,11 +21,11 @@ class Public::PostsController < ApplicationController
         render :new
       end
     end
-  
+
     def edit
       @post_edit = Post.find(params[:id])
     end
-  
+
     def update
       @post_edit = Post.find(params[:id])
       if@post_edit.update(post_params)
@@ -34,21 +35,21 @@ class Public::PostsController < ApplicationController
         render :edit
       end
     end
-  
+
     def show
       @post = Post.find(params[:id])
       @post_comment = Comment.new
     end
-  
+
     def destroy
       post = Post.find(params[:id])
       post.destroy
       flash[:notice] = 'Textを削除しました。'
-      redirect_to user_path(current_user) 
+      redirect_to user_path(current_user)
     end
-  
+
   private
-  
+
     def ensure_guest_user_post
       if current_user.email == "guest@example.com"
         redirect_to root_path , notice: "ゲストユーザーはこの画面へ遷移できません。"
@@ -56,6 +57,6 @@ class Public::PostsController < ApplicationController
     end
 
   def post_params
-    params.require(:post).permit(:image,:text_name, :introduction, :review, :price )
+    params.require(:post).permit(:image,:text_name, :introduction, :review, :price, :genre_id )
   end
 end

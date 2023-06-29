@@ -32,7 +32,7 @@
         <%= user_post.text_name %>
         <% end %>
       </div>
-      <p>投稿日：<%= user_post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= user_post.price %>円</p>
+      <p>投稿日：<%= user_post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= user_post.price %>円　　ジャンル:<%= user_post.genre.genre_name %></p>
       <p>
         商品説明：<br><%= truncate(user_post.introduction, length: 60) do %>
           (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）

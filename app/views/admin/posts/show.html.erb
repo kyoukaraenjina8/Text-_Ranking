@@ -11,7 +11,7 @@
 
     <div class="box col-6">
       <div class="post-title"><%= @post.text_name %>の詳細ページ</div>
-      <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= @post.price %>円</p></br>
+      <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= @post.price %>円　　ジャンル:<%= @post.genre.genre_name %></p></br>
       <p>商品説明：<br><%= @post.introduction %></p></br>
       <p>投稿者レビュー：<br><%= @post.review %></p>
     </div>
@@ -60,7 +60,7 @@
         });
       </script>
 
-      <%= '実用度' %>
+      <%= '初心者向け度' %>
       <div id="usability_score_raty_<%= @post.id %>" data-score="<%= @post.comments.average(:usability_score).to_f.round(1) %>"></div>
       <script>
         raty(document.querySelector('#usability_score_raty_<%= @post.id %>'), {
@@ -124,7 +124,7 @@
           });
         </script>
 
-        <%= '実用度' %>
+        <%= '初心者向け度' %>
         <div id="comment_usability_score_raty_<%= comment.id %>" data-score="<%= comment.usability_score %>"></div>
         <script>
           raty(document.querySelector('#comment_usability_score_raty_<%= comment.id %>'), {

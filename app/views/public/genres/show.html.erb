@@ -1,0 +1,115 @@
+<div class="container">
+  <h3 class="p-2"><%= "#{@genre.genre_name}に関するテキスト一覧 （全#{Post.where(genre_id: @genre.id).count}件）" %></h3>
+
+  <div class="box1-5">
+    <span class="box-title1-5">※下記のタグでジャンルごとのランキングが確認できます。</span>
+    <ul class="genre-list">
+      <% @genres.each do |genre| %>
+        <li class="genre-item">
+          <%= link_to genre.genre_name, genre_path(genre.id) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <% @genre.posts.each do |post| %>
+
+  <div class="row mt-5">
+    <div class="col-3">
+      <p>投稿者名：<%= post.user.name %>さん</p>
+      <p><%= image_tag post.get_image(250, 250) %></p>
+      <p><%= link_to "テキストの詳細をチェック", post_path(post.id) %></p>
+    </div>
+    <div class="box col-6">
+        <div class="post-title">
+          <%= post.text_name %>
+        </div>
+      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= post.price %>円　　ジャンル:<%= post.genre.genre_name %></p>
+      <p>
+        商品説明：<br><%= truncate(post.introduction, length: 90) do %>
+          (続きは<%= link_to '詳細', post_path(post) %>をクリック。）
+        <% end %>
+      </p>
+      <p>
+        投稿者レビュー：<br><%= truncate(post.review, length: 90) do %>
+          (続きは<%= link_to '詳細', post_path(post) %>をクリック。）
+        <% end %>
+      </p>
+    </div>
+
+    <div class="col-3 text-center">
+      <%= 'みんなの評価' %><%= post.comments.average(:total_score).to_f.round(1) %>
+      <div id="post_raty_<%= post.id %>" data-score="<%= post.comments.average(:total_score).to_f.round(1) %>"></div>
+      <script>
+            // scriptファイルをどのidの部分に配置するかを指定
+      raty(document.querySelector('#post_raty_<%= post.id %>'),
+          {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            score: <%= post.comments.average(:total_score).to_f.round(1) %>,
+            readOnly: true,
+            half: true,
+          }
+      );
+      </script>
+
+        <%= '読みやすさ' %>
+        <div id="read_score_raty_<%= post.id %>" data-score="<%= post.comments.average(:read_score).to_f.round(1) %>"></div>
+        <script>
+          // scriptファイルをどのidの部分に配置するかを指定
+          raty(document.querySelector('#read_score_raty_<%= post.id %>'),
+              {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                score: <%= post.comments.average(:read_score).to_f.round(1) %>,
+                readOnly: true,
+                half: true,
+          //星画像の指定などのオプションをここに記述,
+              }
+          );
+        </script>
+
+        <%= '価格の妥当性' %>
+        <div id="price_score_raty_<%= post.id %>" data-score="<%= post.comments.average(:price_score).to_f.round(1) %>"></div>
+        <script>
+          // scriptファイルをどのidの部分に配置するかを指定
+          raty(document.querySelector('#price_score_raty_<%= post.id %>'),
+              {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                score: <%= post.comments.average(:price_score).to_f.round(1) %>,
+                readOnly: true,
+                half: true,
+          //星画像の指定などのオプションをここに記述,
+              }
+          );
+        </script>
+
+        <%= '実用度' %>
+        <div id="usability_score_raty_<%= post.id %>" data-score="<%= post.comments.average(:usability_score).to_f.round(1) %>"></div>
+        <script>
+          // scriptファイルをどのidの部分に配置するかを指定
+          raty(document.querySelector('#usability_score_raty_<%= post.id %>'),
+              {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                score: <%= post.comments.average(:usability_score).to_f.round(1) %>,
+                readOnly: true,
+                half: true,
+          //星画像の指定などのオプションをここに記述,
+              }
+          );
+        </script>
+        
+    <P><%= link_to "このテキストを評価する", post_path(post.id) %></P>
+    
+    </div>
+  </div>
+  <% end %>
+  <%#= paginate @post %>
+</div>
+
