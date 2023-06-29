@@ -8,7 +8,6 @@ class Admin::PostsController < ApplicationController
     @comments = @user_comment.comments.all
   end
 
-
   def show
     @post = Post.find(params[:id])
   end
