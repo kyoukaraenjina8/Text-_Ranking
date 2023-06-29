@@ -42,11 +42,11 @@ Comment.create!(
     {user_id: 2, post_id: 3, comment_introduction: '初心者でもわかるよう、噛み砕いた説明や図での説明が多くされています。初心者の初めの1冊目出来ます。',total_score: '4',read_score: '4',price_score: '4',usability_score: '5'},
     {user_id: 3, post_id: 2, comment_introduction: '本書は冒頭に初心者の気持ちを裏切らない内容になっていますと書かれているが、その通りだと思う。他言語を習得済の私にとってはすごく学びやすく、楽しめる一冊であった。ただ、全くの諸学者には難しいかも。',total_score: '3',read_score: '2.5',price_score: '3',usability_score: '4'},
     {user_id: 3, post_id: 3, comment_introduction: '現役のプロが執筆している入門書,超初心者には向かないがプログラムにかじったことあり、Rubyを学びたいならすごくおすすめです。',total_score: '5',read_score: '4',price_score: '5',usability_score: '5'},
-    {user_id: 1, post_id: 4, comment_introduction: '噛み砕いた説明や図で初心者でもわかりやすい内容になっています。',total_score: '4',read_score: '4',price_score: '4',usability_score: '5'},
+    {user_id: 1, post_id: 4, comment_introduction: '噛み砕いた説明や図で初心者でもわかりやすい内容になっています。',total_score: '4',read_score: '4',price_score: '4',usability_score: '4'},
     {user_id: 1, post_id: 6, comment_introduction: '全くの初心者には難しいかも。もっと分かりやすいテキストもあります。',total_score: '3',read_score: '2.5',price_score: '3',usability_score: '4'},
     {user_id: 2, post_id: 4, comment_introduction: '超初心者には向かないものの、プログラムにかじったことがある方には、すごくおすすめです。',total_score: '5',read_score: '4',price_score: '5',usability_score: '5'},
-    {user_id: 2, post_id: 5, comment_introduction: '初めての1冊目としては十分です。',total_score: '3',read_score: '3.5',price_score: '3',usability_score: '5'},
+    {user_id: 2, post_id: 5, comment_introduction: '初めての1冊目としては十分です。',total_score: '3',read_score: '3.5',price_score: '3',usability_score: '3'},
     {user_id: 3, post_id: 6, comment_introduction: '個人的には難しい表現が多くこれを一冊目にして学ぶのは難しかった。',total_score: '3',read_score: '2.5',price_score: '3',usability_score: '4'},
-    {user_id: 3, post_id: 6, comment_introduction: '入門書としてすごく整っている,すごくおすすめです。',total_score: '5',read_score: '4',price_score: '5',usability_score: '5'}
+    {user_id: 3, post_id: 6, comment_introduction: '入門書としてすごく整っている,すごくおすすめです。',total_score: '5',read_score: '4',price_score: '5',usability_score: '4.5'}
   ]
 )

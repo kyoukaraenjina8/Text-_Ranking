@@ -38,7 +38,8 @@
     </div>
 
     <div class="col-3 text-center">
-      <%= 'みんなの評価' %><%= post.comments.average(:total_score).to_f.round(1) %>
+      <h4><%= 'みんなの評価' %></h4></br>
+      <%= '総合評価' %><%= post.comments.average(:total_score).to_f.round(1) %>
       <div id="post_raty_<%= post.id %>" data-score="<%= post.comments.average(:total_score).to_f.round(1) %>"></div>
       <script>
             // scriptファイルをどのidの部分に配置するかを指定
