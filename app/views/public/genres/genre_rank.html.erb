@@ -60,19 +60,6 @@
       <% end %>
       <P><%= link_to "テキストの詳細をチェック", post_path(post.id) %></P>
       
-    <% if post.favorited_by?(current_user) %>
-      <p>
-      <%= link_to post_favorites_path(post), method: :delete do %>
-        ♥<%= post.favorites.count %> いいね
-      <% end %>
-      </p>
-    <% else %>
-      <p>
-      <%= link_to post_favorites_path(post), method: :post do %>
-        ♡<%= post.favorites.count %> いいね
-      <% end %>
-      </p>
-    <% end %>
       
       
     </div>
