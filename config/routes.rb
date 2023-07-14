@@ -30,6 +30,7 @@ scope module: :public do
   resources :users, only: [:show,:edit,:update]
   resource :posts, only: [:new,:create]
   resources :posts, only: [:show,:index,:destroy,:edit,:update] do
+    resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create,:destroy,:new]
   end
 end
@@ -39,7 +40,6 @@ namespace :admin do
     resources :comments, only: [:destroy]
   resources :users, only: [:show,:index,:edit,:update,:destroy]
   patch '/users/withdraw' => 'users#withdraw'
-  #get 'users/:id/post_index' => 'users#post_index'
   get 'users/:id/comment_index' => 'users#comment_index'
   resources :genres, only: [:index, :show, :edit, :create, :update]
 
