@@ -10,13 +10,6 @@ class Public::UsersController < ApplicationController
     favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
   end
-
-  def index
-    @user =User.find(params[:id])
-    @user_post = @user.posts
-    favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
-  end
   
   def edit
     @user_edit = current_user

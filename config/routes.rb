@@ -27,7 +27,7 @@ scope module: :public do
   patch '/users/withdraw' => 'users#withdraw'
   get 'genres/:id/genre_rank' => 'genres#genre_rank', as: 'genre_rank'
   resources :genres, only: [:show]
-  resources :users, only: [:show, :edit, :update, :inde]
+  resources :users, only: [:show, :edit,:update]
   resource :posts, only: [:new,:create]
   resources :posts, only: [:show,:index,:destroy,:edit,:update] do
     resource :favorites, only: [:create, :destroy]
