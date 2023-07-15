@@ -24,8 +24,6 @@
         <p>投稿者名：<%= post.user.name %>さん</p>
         <p><%= image_tag post.get_image(250, 250) %></p>
         <p><%= link_to "テキストの詳細＆評価をチェック", post_path(post.id) %></p>
-        <%= render 'public/shared/favorites', post: post %>
-        
       </div>
       <div class="box col-6">
           <div class="post-title">

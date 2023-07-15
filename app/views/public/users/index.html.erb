@@ -1,0 +1,53 @@
+<%= stylesheet_link_tag '_footer' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 d-grid mx-auto">
+      <h3 class="text-center m-4">投稿一覧</h3>
+      <% @user_post.each do |user_post| %>
+      <div class="row mt-5">
+        <div class="col-3">
+          <%= link_to "テキストを編集する", edit_post_path(user_post.id), class: "btn btn-outline-info btn-sm" %>
+          <%= link_to post_path(user_post.id) do %>
+            <%= image_tag user_post.get_image(250, 250) %>
+          <% end %>
+        </div>
+        <div class="box col-6">
+          <div class="post-title">
+            <%= link_to post_path(user_post.id) do %>
+            <%= user_post.text_name %>
+            <% end %>
+          </div>
+          <p>投稿日：<%= user_post.created_at.strftime('%Y/%m/%d') %>　　価格：<%= user_post.price %>円　　ジャンル:<%= user_post.genre.genre_name %></p>
+          <p>
+            商品説明：<br><%= truncate(user_post.introduction, length: 60) do %>
+              (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）
+            <% end %>
+          </p>
+          <p>
+            投稿者レビュー：<br><%= truncate(user_post.review, length: 60) do %>
+              (続きは<%= link_to '詳細', post_path(user_post) %>をクリック。）
+            <% end %>
+          </p>
+        </div>
+        <div class="col-3 text-center">
+          <%= 'みんなの評価' %></br>
+          <%= '総合評価' %><%= user_post.comments.average(:total_score).to_f.round(1) %>
+          <div id="post_raty_<%= user_post.id %>" data-score="<%= user_post.comments.average(:total_score).to_f.round(1) %>"></div>
+          <script>
+            // scriptファイルをどのidの部分に配置するかを指定
+            raty(document.querySelector('#post_raty_<%= user_post.id %>'), {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: <%= user_post.comments.average(:total_score).to_f.round(1) %>,
+              readOnly: true,
+              half: true,
+            });
+          </script>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
