@@ -18,7 +18,7 @@
         <% if user_signed_in? %>
           <% if current_user.email != "guest@example.com" %>
           <li>
-            <%= link_to 'テキスト投稿', new_posts_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
+            <%= link_to 'テキスト投稿', new_post_path, class: 'nav-link', style: 'color: #dda0dd; font-weight: bold;' %>
           </li>
           <li>
             <%= link_to 'マイページ', user_path(current_user) , class:'sm nav-link', style: 'color: #dda0dd; font-weight: bold;' %>

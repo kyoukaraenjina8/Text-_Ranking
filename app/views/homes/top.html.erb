@@ -34,7 +34,7 @@
     <ul class="genre-list">
       <% @genres.each do |genre| %>
         <li class="genre-item">
-          <%= link_to genre.genre_name, genre_rank_path(genre.id) %>
+          <%= link_to genre.genre_name, genre_rank_genre_path(genre.id) %>
         </li>
       <% end %>
     </ul>
@@ -227,6 +227,7 @@
             }
         );
         </script>
+          <p><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></p>
           <p><% if comment.user == current_user %>
           <%= link_to "削除", post_comment_path(post, comment.id), method: :delete %>
           </p>

@@ -16,7 +16,7 @@
           <td style="background-color: white;"><%= current_user.email %></td>
         </tr>
       </table>
-      
+
   <strong>投稿一覧</strong>
   <% @user_post.each do |user_post| %>
   <div class="row mt-5">
@@ -62,6 +62,20 @@
     </div>
   </div>
   <% end %>
+      <div class="row m-5">  
+        <table>
+          <tr>
+            <th><strong>いいねしたテキスト一覧</strong></th>
+          </tr>
+          <% @favorite_posts.each do |post| %>
+            <tr>
+              <td><%= link_to post_path(post.id) do %>
+                <%= post.text_name %>
+              <% end %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
 </div>

@@ -59,6 +59,9 @@
         <%= image_tag post.get_image(250, 250) %>
       <% end %>
       <P><%= link_to "テキストの詳細をチェック", post_path(post.id) %></P>
+      
+      
+      
     </div>
     <div class="box col-6">
 
@@ -159,10 +162,10 @@
   </div>
 
   <div class="row scroll">
-    <% post.comments.each do |comment| %>
+    <% post.comments.order(created_at: :desc).each do |comment| %>
       <div class="comment-box col-3 mt-5">
       <span class="box-title">投稿者名：<%= comment.user.name %></span>
-      <p>コメント：</br><%= comment.comment_introduction %></p>
+      <p>コメント：<br><%= comment.comment_introduction %></p>
 
       <%= '総合評価' %>
       <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.total_score %>"></div>
@@ -227,6 +230,7 @@
             }
         );
         </script>
+          <p><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></p>
           <p><% if comment.user == current_user %>
           <%= link_to "削除", post_comment_path(post, comment.id), method: :delete %>
           </p>

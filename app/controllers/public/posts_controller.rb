@@ -1,13 +1,13 @@
 class Public::PostsController < ApplicationController
     before_action :authenticate_user!
     before_action :ensure_guest_user_post, only: [:show,:edit]
-
+    before_action :is_matching_login_user, only: [:edit]
     def new
       @post = Post.new
     end
 
     def index
-      @posts = Post.page(params[:page])
+      @posts = Post.page(params[:page]).order(created_at: :desc)
       @genres = Genre.all.order(created_at: :desc)
     end
 
@@ -55,7 +55,14 @@ class Public::PostsController < ApplicationController
         redirect_to root_path , notice: "ゲストユーザーはこの画面へ遷移できません。"
       end
     end
-
+    
+    def is_matching_login_user
+      user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to root_path
+    end
+    
+    end
   def post_params
     params.require(:post).permit(:image,:text_name, :introduction, :review, :price, :genre_id )
   end
